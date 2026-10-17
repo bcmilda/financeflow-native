@@ -13,7 +13,7 @@ Nová appka FinanceFlow pro telefon. Běží vedle webu [financeflow.cz](https:/
 
 ```
 packages/
-  core/     čisté výpočty bez UI – parsery bank, transakce ve tvaru webu, duplicity, párování účtenek
+  core/     čisté výpočty bez UI – výpočty z webu, parsery bank, transakce ve tvaru webu, duplicity, párování účtenek
   i18n/     překlady (locales/*.json) a formátování přes Intl
 apps/
   mobile/   appka (React + Vite + Capacitor), android/ = nativní projekt
@@ -35,6 +35,9 @@ APK pro Android sestaví GitHub Actions při každém push: záložka **Actions 
 ## Dokumentace
 
 - [doc/ROZHODNUTI.md](doc/ROZHODNUTI.md) – co a proč je rozhodnuté
+- [doc/ARCHITEKTURA.md](doc/ARCHITEKTURA.md) – jak je appka postavená
+- [doc/PARITA.md](doc/PARITA.md) – co z webu už nativní appka umí
+- [doc/PLAN-SESSION-N2.md](doc/PLAN-SESSION-N2.md) – plán další session
 - [doc/BANKY.md](doc/BANKY.md) – jak přidat banku a ověřit ji na skutečných oznámeních
 - [doc/JAZYKY.md](doc/JAZYKY.md) – jak přidat jazyk
 - [doc/UCTENKY.md](doc/UCTENKY.md) – doskenování účtenky k platbě z oznámení (návrh)

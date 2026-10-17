@@ -1,6 +1,6 @@
 # Jazyky
 
-Jazyky rozhraní: **cs** (výchozí a vzor), **en**, **sk**, **pl**, **de**, **uk**. Překlady jsou strojově připravené Claudem; před vydáním je má projít rodilý mluvčí.
+Jazyky rozhraní: **cs** (výchozí a vzor), **en**, **sk**, **pl**, **de**, **uk** – 131 klíčů (n0.2). Překlady jsou strojově připravené Claudem; před vydáním je má projít rodilý mluvčí.
 
 ## Přidat jazyk
 
