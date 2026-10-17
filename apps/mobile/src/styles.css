@@ -100,3 +100,66 @@ button.vedlejsi { background: transparent; }
 
 .prihlaseni { min-height: 100dvh; padding: calc(env(safe-area-inset-top) + 32px) 16px 32px; max-width: 480px; margin: 0 auto; }
 .prihlaseni h1 { font-size: 28px; margin-bottom: 24px; text-align: center; }
+
+/* ── n0.2: Přehled, Transakce, formulář ── */
+.hlavicka { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.stav-spojeni { color: var(--varovani); text-align: right; }
+.spodni-menu button { padding: 10px 4px; font-size: 14px; }
+
+.vyber-mesice { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.vyber-mesice span { font-weight: 700; font-size: 17px; }
+button.ikona { width: 44px; padding: 0; font-size: 22px; line-height: 1; background: var(--karta); }
+
+.mrizka-karet { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.karta.stat { display: flex; flex-direction: column; gap: 4px; padding: 14px; }
+.stat-popis { color: var(--tlumene); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; }
+.karta.stat > .castka { font-size: clamp(16px, 4.8vw, 20px); white-space: normal; overflow-wrap: anywhere; }
+.vydaj-text { color: var(--vydaj); }
+.prijem-text { color: var(--prijem); }
+
+.kategorie-radek { display: flex; flex-direction: column; gap: 6px; }
+.pruh { height: 6px; border-radius: 999px; background: var(--pozadi); overflow: hidden; }
+.pruh > div { height: 100%; border-radius: 999px; }
+
+.tx-radek {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  background: transparent; border: 0; border-radius: 10px; padding: 8px 4px; min-height: 52px; font-weight: 400;
+}
+.tx-radek:active { background: var(--okraj); }
+.tx-ikona { width: 36px; height: 36px; border-radius: 10px; background: var(--pozadi); display: grid; place-items: center; flex-shrink: 0; font-size: 18px; }
+.tx-info { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.tx-info > * { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.karta.den { padding: 10px 12px; }
+.den-nadpis { font-size: 13px; color: var(--tlumene); font-weight: 600; margin: 2px 4px 4px; text-transform: capitalize; }
+.karta.den .polozka, .karta.den li { border: 0; padding: 0; }
+
+.hledani { min-height: 44px; }
+.stitky { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+.stitek-volba { white-space: nowrap; border-radius: 999px; padding: 8px 14px; min-height: 40px; background: var(--karta); color: var(--tlumene); font-weight: 600; }
+.stitek-volba.aktivni { background: var(--akcent); border-color: var(--akcent); color: #fff; }
+
+.prepinac-typu { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.prepinac-typu button { background: var(--karta); color: var(--tlumene); }
+.prepinac-typu button.aktivni.vydaj { background: color-mix(in srgb, var(--vydaj) 22%, var(--karta)); border-color: var(--vydaj); color: var(--text); }
+.prepinac-typu button.aktivni.prijem { background: color-mix(in srgb, var(--prijem) 22%, var(--karta)); border-color: var(--prijem); color: var(--text); }
+.velka-castka { font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.karta.upozorneni { border-left: 4px solid var(--varovani); }
+button.nebezpecne { color: var(--vydaj); }
+input[aria-invalid="true"] { border-color: var(--vydaj); }
+
+.fab {
+  position: fixed; right: 16px; bottom: calc(env(safe-area-inset-bottom) + 76px); z-index: 3;
+  width: 56px; height: 56px; border-radius: 50%; padding: 0; font-size: 30px; line-height: 1;
+  background: var(--akcent); border-color: var(--akcent); color: #fff; box-shadow: 0 6px 20px rgba(0,0,0,.4);
+}
+.toast {
+  position: fixed; left: 16px; right: 16px; bottom: calc(env(safe-area-inset-bottom) + 76px); z-index: 4;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: #2a2e40; border: 1px solid var(--okraj); border-radius: 12px; padding: 8px 8px 8px 16px; box-shadow: 0 6px 20px rgba(0,0,0,.4);
+}
+.toast button { color: var(--akcent); background: transparent; border: 0; }
+
+button.google { width: 100%; background: #fff; color: #1f1f1f; border-color: #fff; margin: 8px 0 4px; }
+.oddelovac { text-align: center; margin: 12px 0; }
+button.odkaz { background: transparent; border: 0; color: var(--akcent); padding: 8px 0; min-height: 40px; font-weight: 600; }
+.radek > h2 { margin: 0; }

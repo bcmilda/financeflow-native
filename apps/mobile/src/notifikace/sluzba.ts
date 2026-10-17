@@ -1,5 +1,5 @@
 import { REGIONY } from '@ff/i18n';
-import { nactiKategorie, nactiPosledniTransakce, zapisTransakci } from '../firebase';
+import { nactiPosledniTransakce, zapisTransakci } from '../firebase';
 import {
   nactiHistorii, nactiNastaveni, nactiNerozpoznane, ulozHistorii, ulozNerozpoznane, type PolozkaHistorie,
 } from '../uloziste';
@@ -22,13 +22,12 @@ export function zpracujFrontu(uid: string): Promise<number> {
     try {
       const { polozky } = await BankovniNotifikace.vyzvednout();
       if (!polozky.length) return 0;
-      const [nastaveni, kategorie, transakce] = await Promise.all([
-        nactiNastaveni(), nactiKategorie(uid), nactiPosledniTransakce(uid),
+      const [nastaveni, transakce] = await Promise.all([
+        nactiNastaveni(), nactiPosledniTransakce(uid),
       ]);
       const r = await zpracujPolozky(polozky, {
         vlastniBalicky: nastaveni.vlastniBalicky,
         penezenky: nastaveni.penezenky,
-        kategorie: new Set(kategorie.map(c => String(c.id))),
         transakce,
         zapis: tx => zapisTransakci(uid, tx),
         casovaZona: Intl.DateTimeFormat().resolvedOptions().timeZone || REGIONY[0].casovaZona,

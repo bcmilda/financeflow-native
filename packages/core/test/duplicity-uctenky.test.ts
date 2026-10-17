@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { najdiDuplicitu, najdiTransakciProUctenku, odhadniKategorii } from '../src';
+import { najdiDuplicitu, najdiTransakciProUctenku } from '../src';
 
 const nova = { type: 'expense', amount: 145.4, date: '2026-10-16', name: 'Penny Ostrava', notifKlic: 'k1' };
 
@@ -53,11 +53,4 @@ describe('doskenování účtenky k transakci z notifikace', () => {
   it('bez shody nic nenabídne (vznikne nová transakce jako dnes)', () => {
     expect(najdiTransakciProUctenku({ castka: 99, datum: '2026-10-16', obchod: 'Albert' }, tx)).toEqual([]);
   });
-});
-
-describe('odhad kategorie', () => {
-  it.each([
-    ['Penny Ostrava', 'cat1'], ['MOL 001 Ostrava', 'cat2'], ['ČD Ostrava hl.n.', 'cat2'],
-    ['McDonald\'s', 'cat1'], ['Lékárna BENU', 'cat4'], ['Neznámý obchod', ''],
-  ])('%s → %s', (obchodnik, cat) => expect(odhadniKategorii(obchodnik)).toBe(cat));
 });

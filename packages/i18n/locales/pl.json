@@ -3,9 +3,14 @@
     "nazev": "FinanceFlow",
     "nav": {
       "zBanky": "Z banku",
-      "nastaveni": "Ustawienia"
+      "nastaveni": "Ustawienia",
+      "prehled": "Przegląd",
+      "transakce": "Transakcje"
     },
-    "nacitam": "Wczytywanie…"
+    "nacitam": "Wczytywanie…",
+    "pridat": "Dodaj transakcję",
+    "offline": "Brak połączenia",
+    "cekajici": "{n, plural, one {# zmiana czeka na wysłanie} few {# zmiany czekają na wysłanie} many {# zmian czeka na wysłanie} other {# zmiany czeka na wysłanie}}"
   },
   "prihlaseni": {
     "titulek": "Logowanie",
@@ -13,9 +18,16 @@
     "email": "E-mail",
     "heslo": "Hasło",
     "prihlasit": "Zaloguj się",
-    "google": "Logowanie przez Google będzie w następnej wersji",
+    "google": "Zaloguj przez Google",
     "chybaUdaje": "Nieprawidłowy e-mail lub hasło.",
-    "chybaObecna": "Logowanie nie powiodło się. Spróbuj ponownie."
+    "chybaObecna": "Logowanie nie powiodło się. Spróbuj ponownie.",
+    "nebo": "lub e-mailem",
+    "zapomenuteHeslo": "Nie pamiętam hasła",
+    "resetOdeslan": "Link do zmiany hasła wysłaliśmy na {email}.",
+    "resetZadejEmail": "Najpierw wpisz e-mail.",
+    "googleNenastaveno": "Logowanie przez Google nie jest jeszcze skonfigurowane w telefonie. Na razie zaloguj się e-mailem.",
+    "googleZruseno": "Logowanie przez Google nie powiodło się lub zostało anulowane.",
+    "zalozitUcet": "Nie masz konta? Załóż je na financeflow.cz."
   },
   "zBanky": {
     "stavZapnuto": "Odczyt powiadomień z banku jest włączony",
@@ -78,5 +90,70 @@
   },
   "pocet": {
     "transakce": "{n, plural, one {# transakcja} few {# transakcje} many {# transakcji} other {# transakcji}}"
+  },
+  "mesic": {
+    "predchozi": "Poprzedni miesiąc",
+    "dalsi": "Następny miesiąc"
+  },
+  "kategorie": {
+    "bez": "Bez kategorii"
+  },
+  "prehled": {
+    "prijmy": "Przychody",
+    "vydaje": "Wydatki",
+    "bilance": "Bilans",
+    "zustatek": "Saldo",
+    "dluhy": "Długi",
+    "minule": "poprzedni miesiąc",
+    "zmenaVydaju": "{pct} względem poprzedniego miesiąca",
+    "kategorie": "Wydatki według kategorii",
+    "zadneVydaje": "W tym miesiącu nie ma jeszcze wydatków.",
+    "posledni": "Ostatnie transakcje",
+    "vse": "Wszystkie",
+    "penezenky": "Portfele",
+    "prazdnyMesic": "W tym miesiącu nie ma jeszcze transakcji."
+  },
+  "transakce": {
+    "hledat": "Szukaj",
+    "filtr": {
+      "vse": "Wszystko",
+      "vydaje": "Wydatki",
+      "prijmy": "Przychody",
+      "bezKategorie": "Bez kategorii"
+    },
+    "prazdne": "Brak transakcji",
+    "nicNenalezeno": "Nic nie znaleziono",
+    "presun": "przelew własny",
+    "vyrovnani": "wyrównanie",
+    "rozdeleno": "podzielona",
+    "zNotifikace": "z powiadomienia"
+  },
+  "formular": {
+    "novy": "Nowa transakcja",
+    "upravit": "Edytuj transakcję",
+    "vydaj": "Wydatek",
+    "prijem": "Przychód",
+    "castka": "Kwota",
+    "nazev": "Nazwa",
+    "kategorie": "Kategoria",
+    "podkategorie": "Podkategoria",
+    "nevybrano": "Nie wybrano",
+    "datum": "Data",
+    "penezenka": "Portfel",
+    "bezPenezenky": "Bez portfela",
+    "poznamka": "Notatka",
+    "ulozit": "Zapisz",
+    "zrusit": "Anuluj",
+    "smazat": "Usuń",
+    "smazano": "Transakcja usunięta",
+    "zpet": "Cofnij",
+    "chybaCastka": "Wpisz kwotę większą od zera.",
+    "chybaNazev": "Wpisz nazwę lub wybierz kategorię.",
+    "chybaDatum": "Wybierz datę.",
+    "koncept": "Masz niedokończoną transakcję ({cas}).",
+    "pokracovat": "Kontynuuj",
+    "zahodit": "Odrzuć",
+    "zNotifikace": "Zapisano automatycznie z powiadomienia banku.",
+    "chybaUlozeni": "Nie udało się zapisać. Niedokończona transakcja zostaje w telefonie – spróbuj ponownie."
   }
 }

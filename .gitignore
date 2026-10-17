@@ -14,6 +14,8 @@ apps/mobile/android/app/src/main/assets/public/
 apps/mobile/android/capacitor-cordova-android-plugins/
 *.keystore
 *.jks
+# výjimka: veřejný ladicí klíč (jen debug build, kvůli stálému otisku SHA-1)
+!apps/mobile/android/app/debug.keystore
 
 # Firebase konfigurace pro Android si stáhneš z Firebase Console (neukládat do repa)
 google-services.json

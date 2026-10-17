@@ -1,5 +1,5 @@
 import {
-  najdiDuplicitu, odhadniKategorii, parseNotifikace, vytvorTransakci,
+  najdiDuplicitu, parseNotifikace, vytvorTransakci,
   type TransakceLehka, type TransakceWeb,
 } from '@ff/core';
 import type { Nerozpoznana, PolozkaHistorie } from '../uloziste';
@@ -8,8 +8,6 @@ import type { ZachycenaNotifikace } from './plugin';
 export interface KontextZpracovani {
   vlastniBalicky: Record<string, string>;
   penezenky: Record<string, string>;
-  /** Id kategorií, které uživatel opravdu má (odhad mimo ně se nezapíše). */
-  kategorie: Set<string>;
   /** Poslední transakce z Firebase – kvůli duplicitám. Funkce do pole přidává zapsané. */
   transakce: TransakceLehka[];
   zapis: (tx: TransakceWeb) => Promise<void>;
@@ -29,7 +27,7 @@ export interface VysledekZpracovani {
 /**
  * Fronta z telefonu → transakce ve Firebase.
  *
- * - platba v CZK bez dvojčete → zapíše se rovnou do transakcí
+ * - platba v CZK bez dvojčete → zapíše se rovnou do transakcí (bez kategorie, N-008)
  * - stejná notifikace podruhé → nic (už zapsaná)
  * - stejná platba zapsaná jinak (ručně, výpis) → nezapíše se, appka nabídne „Přesto přidat“
  * - cizí měna → nezapíše se (bez kurzu by částka nebyla správně), appka ji ukáže
@@ -53,8 +51,9 @@ export async function zpracujPolozky(polozky: ZachycenaNotifikace[], k: KontextZ
     }
 
     const { banka, platba } = r;
-    const odhad = odhadniKategorii(platba.protistrana);
-    const catId = k.kategorie.has(odhad) ? odhad : '';
+    // Kategorie se z oznámení NEODHADUJE (N-008). Transakce zůstane bez kategorie,
+    // dokud ji nezařadí uživatel nebo položky připojené účtenky.
+    const catId = '';
     const wallet = (platba.karta4 && k.penezenky[`${banka.id}:${platba.karta4}`]) || k.penezenky[banka.id] || undefined;
 
     let tx: TransakceWeb;

@@ -1,10 +1,12 @@
 import { initializeApp } from 'firebase/app';
+import { Capacitor } from '@capacitor/core';
 import {
-  browserLocalPersistence, indexedDBLocalPersistence, initializeAuth,
-  onAuthStateChanged, signInWithEmailAndPassword, signOut, type User,
+  browserLocalPersistence, browserPopupRedirectResolver, GoogleAuthProvider, indexedDBLocalPersistence, initializeAuth,
+  onAuthStateChanged, sendPasswordResetEmail, signInWithCredential, signInWithEmailAndPassword, signInWithPopup, signOut, type User,
 } from 'firebase/auth';
 import { get, getDatabase, limitToLast, orderByKey, query, ref, set } from 'firebase/database';
 import type { TransakceLehka, TransakceWeb } from '@ff/core';
+import { GOOGLE_WEB_CLIENT_ID } from './konfigurace';
 
 /**
  * Stejný Firebase projekt jako financeflow.cz – stejný účet, stejná data.
@@ -22,8 +24,13 @@ const app = initializeApp({
 
 // initializeAuth místo getAuth: v Capacitoru getAuth čeká na iframe pro přihlášení
 // přes okno, který ve WebView nefunguje.
-export const auth = initializeAuth(app, { persistence: [indexedDBLocalPersistence, browserLocalPersistence] });
-const db = getDatabase(app);
+// V prohlížeči se přidá resolver pro přihlášení oknem (Google), v telefonu ne.
+const jeNativ = Capacitor.isNativePlatform();
+export const auth = initializeAuth(app, {
+  persistence: [indexedDBLocalPersistence, browserLocalPersistence],
+  ...(jeNativ ? {} : { popupRedirectResolver: browserPopupRedirectResolver }),
+});
+export const db = getDatabase(app);
 
 export function sledujUzivatele(cb: (u: User | null) => void): () => void {
   return onAuthStateChanged(auth, cb);
@@ -33,11 +40,40 @@ export async function prihlasit(email: string, heslo: string): Promise<void> {
   await signInWithEmailAndPassword(auth, email.trim(), heslo);
 }
 
-export async function odhlasit(): Promise<void> {
-  await signOut(auth);
+export class GoogleNeniNastavene extends Error {}
+
+/**
+ * Přihlášení přes Google – stejný účet jako na webu.
+ * Prohlížeč: okno Google. Android: systémový výběr účtu (Credential Manager),
+ * z něj ID token → Firebase.
+ */
+export async function prihlasitGoogle(): Promise<void> {
+  if (!jeNativ) {
+    await signInWithPopup(auth, new GoogleAuthProvider());
+    return;
+  }
+  if (!GOOGLE_WEB_CLIENT_ID) throw new GoogleNeniNastavene();
+  const { SocialLogin } = await import('@capgo/capacitor-social-login');
+  await SocialLogin.initialize({ google: { webClientId: GOOGLE_WEB_CLIENT_ID, mode: 'online' } });
+  const r = await SocialLogin.login({ provider: 'google', options: { scopes: ['email', 'profile'] } });
+  const idToken = r.result && 'idToken' in r.result ? r.result.idToken : null;
+  if (!idToken) throw new Error('Google nevrátil přihlašovací token');
+  await signInWithCredential(auth, GoogleAuthProvider.credential(idToken));
 }
 
-const cesta = (uid: string, podcesta: string) => `users/${uid}/data/${podcesta}`;
+export async function obnovitHeslo(email: string): Promise<void> {
+  await sendPasswordResetEmail(auth, email.trim());
+}
+
+export async function odhlasit(): Promise<void> {
+  await signOut(auth);
+  if (jeNativ && GOOGLE_WEB_CLIENT_ID) {
+    // Ať příští přihlášení nabídne výběr účtu a nepřihlásí automaticky ten poslední.
+    try { const { SocialLogin } = await import('@capgo/capacitor-social-login'); await SocialLogin.logout({ provider: 'google' }); } catch { /* nevadí */ }
+  }
+}
+
+export const cesta = (uid: string, podcesta: string) => `users/${uid}/data/${podcesta}`;
 
 export interface Penezenka { id: string; name: string }
 export interface Kategorie { id: string; name: string; icon?: string }

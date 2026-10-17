@@ -1,0 +1,40 @@
+{
+  "categories": [
+    { "id": "cat1", "name": "Jídlo & Nákupy", "type": "expense" },
+    { "id": "cat2", "name": "Doprava", "type": "expense" },
+    { "id": "cat7", "name": "Výplata", "type": "income" },
+    { "id": "cat9", "name": "Různé", "type": "both" },
+    { "id": "cat_t_reserve", "name": "Finanční rezerva", "type": "transfer", "isSaving": true }
+  ],
+  "wallets": [
+    { "id": "w1", "name": "Běžný účet", "currency": "CZK", "balance": 10000 },
+    { "id": "w2", "name": "Hotovost", "currency": "CZK", "balance": 2000, "balanceDate": "2026-10-10", "balanceSetAt": 1791000000000 },
+    { "id": "w3", "name": "Euro účet", "currency": "EUR", "balance": 100 }
+  ],
+  "bank": { "startBalance": 5000 },
+  "debts": [ { "id": "d1", "remaining": 120000 }, { "id": "d2", "remaining": 8000 } ],
+  "transactions": [
+    { "id": 1, "type": "income", "amount": 30000, "catId": "cat7", "date": "2026-09-15", "wallet": "w1" },
+    { "id": 2, "type": "expense", "amount": 4000, "catId": "cat1", "date": "2026-09-20", "wallet": "w1" },
+    { "id": 3, "type": "income", "amount": 32000, "catId": "cat7", "date": "2026-10-15", "wallet": "w1" },
+    { "id": 4, "type": "expense", "amount": 1200, "catId": "cat1", "date": "2026-10-02", "wallet": "w1" },
+    { "id": 5, "type": "expense", "amt": 800, "catId": "cat2", "date": "2026-10-03", "wallet": "w1" },
+    { "id": 6, "type": "expense", "amount": 999, "catId": "cat1", "date": "2026-10-04", "isBalancing": true, "wallet": "w1" },
+    { "id": 7, "type": "expense", "amount": 3000, "catId": "cat9", "date": "2026-10-05", "splitParent": true, "splitId": "s1", "wallet": "w1" },
+    { "id": 8, "type": "expense", "amount": 1000, "catId": "cat1", "date": "2026-10-05", "splitId": "s1" },
+    { "id": 9, "type": "expense", "amount": 2000, "catId": "cat2", "date": "2026-10-05", "splitId": "s1" },
+    { "id": 10, "type": "expense", "amount": 5000, "catId": "cat_t_reserve", "date": "2026-10-06", "wallet": "w1" },
+    { "id": 11, "type": "expense", "amount": 700, "catId": "", "date": "2026-10-07", "wallet": "w1" },
+    { "id": 12, "type": "expense", "amount": 1500, "date": "2026-10-08", "wallet": "w1", "transferId": "tr1" },
+    { "id": 13, "type": "income", "amount": 1500, "date": "2026-10-08", "wallet": "w2", "transferId": "tr1" },
+    { "id": 14, "type": "expense", "amount": 300, "catId": "cat1", "date": "2026-10-09", "wallet": "w2" },
+    { "id": 15, "type": "expense", "amount": 400, "catId": "cat1", "date": "2026-10-10", "wallet": "w2", "src": "import" },
+    { "id": 16, "type": "expense", "amount": 250, "catId": "cat1", "date": "2026-10-10", "wallet": "w2", "createdAt": 1791000500000 },
+    { "id": 17, "type": "expense", "amount": 100, "catId": "cat2", "date": "2026-10-11", "wallet": "w2" },
+    { "id": 18, "type": "expense", "amount": 20, "amtCZK": 500, "catId": "cat1", "date": "2026-10-12", "wallet": "w3" },
+    { "id": 19, "type": "expense", "amount": 10, "catId": "cat2", "date": "2026-10-12", "wallet": "w3" },
+    { "id": 20, "type": "expense", "amount": 600, "catId": "cat_neexistuje", "date": "2026-10-13", "wallet": "w1" },
+    { "id": 21, "type": "expense", "amount": 9999, "catId": "cat1", "date": "2026-11-01", "wallet": "w1" },
+    { "id": 22, "type": "income", "amount": 300, "catId": "cat_t_reserve", "date": "2026-10-20", "wallet": "w1" }
+  ]
+}

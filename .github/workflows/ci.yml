@@ -15,10 +15,20 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      # Kontraktní test počítá stejná data kódem webu – web se stáhne vedle.
+      # Když není dostupný (soukromé repo), test se sám přeskočí.
+      - uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          repository: bcmilda/financeflow
+          ref: dev
+          path: web
       - run: npm ci
       - run: npm run kontrola
       - run: npm run typecheck
       - run: npm test
+        env:
+          WEB_REPO: ${{ github.workspace }}/web
       - run: npm run build
 
   android:

@@ -8,17 +8,17 @@ const karta = (id: string, text: string, posun = 0) => ({ id, balicek: 'cz.kb.nd
 function kontext(o: Partial<KontextZpracovani> = {}): KontextZpracovani & { zapsane: TransakceWeb[] } {
   const zapsane: TransakceWeb[] = [];
   return {
-    vlastniBalicky: {}, penezenky: { kb: 'w-kb', 'kb:9999': 'w-kredit' }, kategorie: new Set(['cat1', 'cat2']),
+    vlastniBalicky: {}, penezenky: { kb: 'w-kb', 'kb:9999': 'w-kredit' },
     transakce: [], zapis: async tx => { zapsane.push(tx); }, casovaZona: 'Europe/Prague', ted: 1, zapsane, ...o,
   };
 }
 
 describe('fronta notifikací → transakce', () => {
-  it('platba kartou se zapíše s kategorií a peněženkou banky', async () => {
+  it('platba kartou se zapíše s peněženkou banky a BEZ kategorie (žádný odhad, N-008)', async () => {
     const k = kontext();
     const r = await zpracujPolozky([karta('a', '145,40 Kč  u obchodníka Penny Ostrava, 💳 VISA Classic 4111 11** **** 1234.')], k);
     expect(k.zapsane).toHaveLength(1);
-    expect(k.zapsane[0]).toMatchObject({ name: 'Penny Ostrava', amount: 145.4, catId: 'cat1', wallet: 'w-kb', date: '2026-10-16' });
+    expect(k.zapsane[0]).toMatchObject({ name: 'Penny Ostrava', amount: 145.4, catId: '', category: '', wallet: 'w-kb', date: '2026-10-16' });
     expect(r.potvrdit).toEqual(['a']);
   });
 
@@ -26,12 +26,6 @@ describe('fronta notifikací → transakce', () => {
     const k = kontext();
     await zpracujPolozky([karta('a', '99,00 Kč  u obchodníka Lidl Brno, 💳 Mastercard 5555 55** **** 9999.')], k);
     expect(k.zapsane[0]?.wallet).toBe('w-kredit');
-  });
-
-  it('kategorie, kterou uživatel nemá, se nevyplní', async () => {
-    const k = kontext({ kategorie: new Set(['cat9']) });
-    await zpracujPolozky([karta('a', '145,40 Kč  u obchodníka Penny Ostrava, 💳 VISA 4111 11** **** 1234.')], k);
-    expect(k.zapsane[0]?.catId).toBe('');
   });
 
   it('budoucí splátka se zahodí a nic se nezapíše', async () => {

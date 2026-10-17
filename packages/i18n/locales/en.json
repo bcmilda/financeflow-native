@@ -3,9 +3,14 @@
     "nazev": "FinanceFlow",
     "nav": {
       "zBanky": "From bank",
-      "nastaveni": "Settings"
+      "nastaveni": "Settings",
+      "prehled": "Overview",
+      "transakce": "Transactions"
     },
-    "nacitam": "Loading…"
+    "nacitam": "Loading…",
+    "pridat": "Add transaction",
+    "offline": "Offline",
+    "cekajici": "{n, plural, one {# change waiting to sync} other {# changes waiting to sync}}"
   },
   "prihlaseni": {
     "titulek": "Sign in",
@@ -13,9 +18,16 @@
     "email": "Email",
     "heslo": "Password",
     "prihlasit": "Sign in",
-    "google": "Google sign-in is coming in the next version",
+    "google": "Sign in with Google",
     "chybaUdaje": "Wrong email or password.",
-    "chybaObecna": "Sign-in failed. Please try again."
+    "chybaObecna": "Sign-in failed. Please try again.",
+    "nebo": "or with email",
+    "zapomenuteHeslo": "Forgot password",
+    "resetOdeslan": "We've sent a password reset link to {email}.",
+    "resetZadejEmail": "Enter your email first.",
+    "googleNenastaveno": "Google sign-in isn't set up on the phone yet. Please sign in with email for now.",
+    "googleZruseno": "Google sign-in failed or was cancelled.",
+    "zalozitUcet": "No account? Create one at financeflow.cz."
   },
   "zBanky": {
     "stavZapnuto": "Reading bank notifications is on",
@@ -78,5 +90,70 @@
   },
   "pocet": {
     "transakce": "{n, plural, one {# transaction} other {# transactions}}"
+  },
+  "mesic": {
+    "predchozi": "Previous month",
+    "dalsi": "Next month"
+  },
+  "kategorie": {
+    "bez": "Uncategorised"
+  },
+  "prehled": {
+    "prijmy": "Income",
+    "vydaje": "Expenses",
+    "bilance": "Balance",
+    "zustatek": "Total balance",
+    "dluhy": "Debts",
+    "minule": "last month",
+    "zmenaVydaju": "{pct} vs last month",
+    "kategorie": "Expenses by category",
+    "zadneVydaje": "No expenses this month yet.",
+    "posledni": "Recent transactions",
+    "vse": "All",
+    "penezenky": "Wallets",
+    "prazdnyMesic": "There are no transactions in this month yet."
+  },
+  "transakce": {
+    "hledat": "Search",
+    "filtr": {
+      "vse": "All",
+      "vydaje": "Expenses",
+      "prijmy": "Income",
+      "bezKategorie": "Uncategorised"
+    },
+    "prazdne": "No transactions",
+    "nicNenalezeno": "Nothing found",
+    "presun": "transfer",
+    "vyrovnani": "balancing",
+    "rozdeleno": "split",
+    "zNotifikace": "from notification"
+  },
+  "formular": {
+    "novy": "New transaction",
+    "upravit": "Edit transaction",
+    "vydaj": "Expense",
+    "prijem": "Income",
+    "castka": "Amount",
+    "nazev": "Name",
+    "kategorie": "Category",
+    "podkategorie": "Subcategory",
+    "nevybrano": "Not selected",
+    "datum": "Date",
+    "penezenka": "Wallet",
+    "bezPenezenky": "No wallet",
+    "poznamka": "Note",
+    "ulozit": "Save",
+    "zrusit": "Cancel",
+    "smazat": "Delete",
+    "smazano": "Transaction deleted",
+    "zpet": "Undo",
+    "chybaCastka": "Enter an amount greater than zero.",
+    "chybaNazev": "Enter a name or choose a category.",
+    "chybaDatum": "Choose a date.",
+    "koncept": "You have an unfinished transaction ({cas}).",
+    "pokracovat": "Continue",
+    "zahodit": "Discard",
+    "zNotifikace": "Recorded automatically from a bank notification.",
+    "chybaUlozeni": "Saving failed. Your unfinished transaction is kept on the phone – please try again."
   }
 }

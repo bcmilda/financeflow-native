@@ -3,9 +3,14 @@
     "nazev": "FinanceFlow",
     "nav": {
       "zBanky": "Von der Bank",
-      "nastaveni": "Einstellungen"
+      "nastaveni": "Einstellungen",
+      "prehled": "Übersicht",
+      "transakce": "Transaktionen"
     },
-    "nacitam": "Wird geladen…"
+    "nacitam": "Wird geladen…",
+    "pridat": "Transaktion hinzufügen",
+    "offline": "Offline",
+    "cekajici": "{n, plural, one {# Änderung wartet auf Synchronisierung} other {# Änderungen warten auf Synchronisierung}}"
   },
   "prihlaseni": {
     "titulek": "Anmelden",
@@ -13,9 +18,16 @@
     "email": "E-Mail",
     "heslo": "Passwort",
     "prihlasit": "Anmelden",
-    "google": "Die Anmeldung mit Google kommt in der nächsten Version",
+    "google": "Mit Google anmelden",
     "chybaUdaje": "Falsche E-Mail oder falsches Passwort.",
-    "chybaObecna": "Die Anmeldung ist fehlgeschlagen. Bitte versuche es erneut."
+    "chybaObecna": "Die Anmeldung ist fehlgeschlagen. Bitte versuche es erneut.",
+    "nebo": "oder mit E-Mail",
+    "zapomenuteHeslo": "Passwort vergessen",
+    "resetOdeslan": "Wir haben einen Link zum Zurücksetzen an {email} gesendet.",
+    "resetZadejEmail": "Gib zuerst deine E-Mail ein.",
+    "googleNenastaveno": "Die Google-Anmeldung ist auf dem Telefon noch nicht eingerichtet. Melde dich vorerst mit E-Mail an.",
+    "googleZruseno": "Die Google-Anmeldung ist fehlgeschlagen oder wurde abgebrochen.",
+    "zalozitUcet": "Noch kein Konto? Erstelle es auf financeflow.cz."
   },
   "zBanky": {
     "stavZapnuto": "Das Lesen von Bankbenachrichtigungen ist eingeschaltet",
@@ -78,5 +90,70 @@
   },
   "pocet": {
     "transakce": "{n, plural, one {# Transaktion} other {# Transaktionen}}"
+  },
+  "mesic": {
+    "predchozi": "Vorheriger Monat",
+    "dalsi": "Nächster Monat"
+  },
+  "kategorie": {
+    "bez": "Ohne Kategorie"
+  },
+  "prehled": {
+    "prijmy": "Einnahmen",
+    "vydaje": "Ausgaben",
+    "bilance": "Bilanz",
+    "zustatek": "Kontostand",
+    "dluhy": "Schulden",
+    "minule": "Vormonat",
+    "zmenaVydaju": "{pct} zum Vormonat",
+    "kategorie": "Ausgaben nach Kategorie",
+    "zadneVydaje": "In diesem Monat noch keine Ausgaben.",
+    "posledni": "Letzte Transaktionen",
+    "vse": "Alle",
+    "penezenky": "Geldbörsen",
+    "prazdnyMesic": "In diesem Monat gibt es noch keine Transaktionen."
+  },
+  "transakce": {
+    "hledat": "Suchen",
+    "filtr": {
+      "vse": "Alle",
+      "vydaje": "Ausgaben",
+      "prijmy": "Einnahmen",
+      "bezKategorie": "Ohne Kategorie"
+    },
+    "prazdne": "Keine Transaktionen",
+    "nicNenalezeno": "Nichts gefunden",
+    "presun": "Umbuchung",
+    "vyrovnani": "Ausgleich",
+    "rozdeleno": "aufgeteilt",
+    "zNotifikace": "aus Benachrichtigung"
+  },
+  "formular": {
+    "novy": "Neue Transaktion",
+    "upravit": "Transaktion bearbeiten",
+    "vydaj": "Ausgabe",
+    "prijem": "Einnahme",
+    "castka": "Betrag",
+    "nazev": "Bezeichnung",
+    "kategorie": "Kategorie",
+    "podkategorie": "Unterkategorie",
+    "nevybrano": "Nicht ausgewählt",
+    "datum": "Datum",
+    "penezenka": "Geldbörse",
+    "bezPenezenky": "Ohne Geldbörse",
+    "poznamka": "Notiz",
+    "ulozit": "Speichern",
+    "zrusit": "Abbrechen",
+    "smazat": "Löschen",
+    "smazano": "Transaktion gelöscht",
+    "zpet": "Rückgängig",
+    "chybaCastka": "Gib einen Betrag größer als null ein.",
+    "chybaNazev": "Gib eine Bezeichnung ein oder wähle eine Kategorie.",
+    "chybaDatum": "Wähle ein Datum.",
+    "koncept": "Du hast eine angefangene Transaktion ({cas}).",
+    "pokracovat": "Fortsetzen",
+    "zahodit": "Verwerfen",
+    "zNotifikace": "Automatisch aus einer Bankbenachrichtigung erfasst.",
+    "chybaUlozeni": "Speichern fehlgeschlagen. Die angefangene Transaktion bleibt auf dem Telefon – bitte erneut versuchen."
   }
 }

@@ -7,6 +7,13 @@ const config: CapacitorConfig = {
   appId: 'cz.financeflow.nativni',
   appName: 'FinanceFlow',
   webDir: 'dist',
+  plugins: {
+    // Přihlášení přes Google (Credential Manager). Ostatní poskytovatele nebalit.
+    SocialLogin: {
+      providers: { google: true, facebook: false, apple: false, twitter: false },
+      logLevel: 1,
+    },
+  },
   android: {
     // Ladění WebView jen v debug buildu.
     webContentsDebuggingEnabled: false,

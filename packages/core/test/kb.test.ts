@@ -46,9 +46,9 @@ describe('KB+ – skutečné notifikace', () => {
     const v = n('Platba kartou', '145,40 Kč  u obchodníka Penny Ostrava, 💳 VISA Classic 4111 11** **** 1234.');
     const r = parseNotifikace(v);
     if (r.stav !== 'platba') throw new Error('nerozpoznáno');
-    const tx = vytvorTransakci(v, r.banka, r.platba, { catId: 'cat1', wallet: 'w1', casovaZona: 'Europe/Prague', ted: 1 });
+    const tx = vytvorTransakci(v, r.banka, r.platba, { catId: '', wallet: 'w1', casovaZona: 'Europe/Prague', ted: 1 });
     expect(tx).toMatchObject({
-      type: 'expense', name: 'Penny Ostrava', amount: 145.4, amt: 145.4, catId: 'cat1', category: 'cat1',
+      type: 'expense', name: 'Penny Ostrava', amount: 145.4, amt: 145.4, catId: '', category: '',
       date: '2026-10-16', wallet: 'w1', currency: 'CZK', note: '📱 KB+', zdroj: 'notifikace', notifBanka: 'kb', karta4: '1234',
     });
     // Číslo karty ani text notifikace se do transakce neukládá.

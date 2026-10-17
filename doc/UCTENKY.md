@@ -16,5 +16,5 @@ Oznámení banky zapíše „Penny, 145,40 Kč“. Když pak uživatel naskenuje
 
 ## Otevřené
 
-- Kategorie transakce po připojení: zůstane odhad z oznámení, nebo převezme hlavní kategorii z položek (jako web)? → Milan.
+- Kategorie transakce po připojení: z položek účtenky (jako web). Odhad z oznámení není přípustný (N-008), transakce z oznámení kategorii nemá.
 - Stejná logika by měla platit i na webu (naskenovaná účtenka by tam taky měla nabídnout připojení).

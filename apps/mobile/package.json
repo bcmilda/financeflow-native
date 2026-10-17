@@ -1,7 +1,7 @@
 {
   "name": "@ff/mobile",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,9 +16,11 @@
     "@capacitor/app": "^8.1.2",
     "@capacitor/core": "^8.5.3",
     "@capacitor/preferences": "^8.0.1",
+    "@capgo/capacitor-social-login": "^8.5.19",
     "@ff/core": "*",
     "@ff/i18n": "*",
     "firebase": "^13.0.0",
+    "idb-keyval": "^6.3.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-i18next": "^17.0.20"

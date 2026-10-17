@@ -3,4 +3,6 @@ export * from './schema/transakce';
 export * from './transakce/zNotifikace';
 export * from './transakce/duplicity';
 export * from './uctenky/parovani';
-export { odhadniKategorii, bezDiakritiky } from './kategorie/odhad';
+export { bezDiakritiky } from './text/normalizace';
+export * from './data/typy';
+export * from './data/vypocty';

@@ -1,4 +1,4 @@
-import { bezDiakritiky } from '../kategorie/odhad';
+import { bezDiakritiky } from '../text/normalizace';
 import { castkaTx, type TransakceLehka } from '../schema/transakce';
 
 export type VysledekDuplicity =

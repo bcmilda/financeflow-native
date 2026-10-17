@@ -3,9 +3,14 @@
     "nazev": "FinanceFlow",
     "nav": {
       "zBanky": "Z banky",
-      "nastaveni": "Nastavenia"
+      "nastaveni": "Nastavenia",
+      "prehled": "Prehľad",
+      "transakce": "Transakcie"
     },
-    "nacitam": "Načítavam…"
+    "nacitam": "Načítavam…",
+    "pridat": "Pridať transakciu",
+    "offline": "Bez pripojenia",
+    "cekajici": "{n, plural, one {# zmena čaká na odoslanie} few {# zmeny čakajú na odoslanie} many {# zmeny čaká na odoslanie} other {# zmien čaká na odoslanie}}"
   },
   "prihlaseni": {
     "titulek": "Prihlásenie",
@@ -13,9 +18,16 @@
     "email": "E-mail",
     "heslo": "Heslo",
     "prihlasit": "Prihlásiť sa",
-    "google": "Prihlásenie cez Google bude v ďalšej verzii",
+    "google": "Prihlásiť cez Google",
     "chybaUdaje": "Nesprávny e-mail alebo heslo.",
-    "chybaObecna": "Prihlásenie sa nepodarilo. Skús to znova."
+    "chybaObecna": "Prihlásenie sa nepodarilo. Skús to znova.",
+    "nebo": "alebo e-mailom",
+    "zapomenuteHeslo": "Zabudnuté heslo",
+    "resetOdeslan": "Odkaz na nové heslo sme poslali na {email}.",
+    "resetZadejEmail": "Najprv vyplň e-mail.",
+    "googleNenastaveno": "Prihlásenie cez Google ešte nie je v telefóne nastavené. Zatiaľ sa prihlás e-mailom.",
+    "googleZruseno": "Prihlásenie cez Google sa nepodarilo alebo bolo zrušené.",
+    "zalozitUcet": "Nemáš účet? Založíš si ho na financeflow.cz."
   },
   "zBanky": {
     "stavZapnuto": "Čítanie upozornení z banky je zapnuté",
@@ -78,5 +90,70 @@
   },
   "pocet": {
     "transakce": "{n, plural, one {# transakcia} few {# transakcie} many {# transakcie} other {# transakcií}}"
+  },
+  "mesic": {
+    "predchozi": "Predchádzajúci mesiac",
+    "dalsi": "Ďalší mesiac"
+  },
+  "kategorie": {
+    "bez": "Bez kategórie"
+  },
+  "prehled": {
+    "prijmy": "Príjmy",
+    "vydaje": "Výdavky",
+    "bilance": "Bilancia",
+    "zustatek": "Zostatok",
+    "dluhy": "Dlhy",
+    "minule": "minulý mesiac",
+    "zmenaVydaju": "{pct} oproti minulému mesiacu",
+    "kategorie": "Výdavky podľa kategórií",
+    "zadneVydaje": "Tento mesiac zatiaľ žiadne výdavky.",
+    "posledni": "Posledné transakcie",
+    "vse": "Všetky",
+    "penezenky": "Peňaženky",
+    "prazdnyMesic": "V tomto mesiaci zatiaľ nie sú žiadne transakcie."
+  },
+  "transakce": {
+    "hledat": "Hľadať",
+    "filtr": {
+      "vse": "Všetko",
+      "vydaje": "Výdavky",
+      "prijmy": "Príjmy",
+      "bezKategorie": "Bez kategórie"
+    },
+    "prazdne": "Žiadne transakcie",
+    "nicNenalezeno": "Nič sa nenašlo",
+    "presun": "presun",
+    "vyrovnani": "vyrovnanie",
+    "rozdeleno": "rozdelené",
+    "zNotifikace": "z upozornenia"
+  },
+  "formular": {
+    "novy": "Nová transakcia",
+    "upravit": "Upraviť transakciu",
+    "vydaj": "Výdavok",
+    "prijem": "Príjem",
+    "castka": "Suma",
+    "nazev": "Názov",
+    "kategorie": "Kategória",
+    "podkategorie": "Podkategória",
+    "nevybrano": "Nevybrané",
+    "datum": "Dátum",
+    "penezenka": "Peňaženka",
+    "bezPenezenky": "Bez peňaženky",
+    "poznamka": "Poznámka",
+    "ulozit": "Uložiť",
+    "zrusit": "Zrušiť",
+    "smazat": "Zmazať",
+    "smazano": "Transakcia zmazaná",
+    "zpet": "Späť",
+    "chybaCastka": "Zadaj sumu väčšiu ako nula.",
+    "chybaNazev": "Vyplň názov alebo vyber kategóriu.",
+    "chybaDatum": "Vyber dátum.",
+    "koncept": "Máš rozpísanú transakciu ({cas}).",
+    "pokracovat": "Pokračovať",
+    "zahodit": "Zahodiť",
+    "zNotifikace": "Zapísané automaticky z upozornenia banky.",
+    "chybaUlozeni": "Uložiť sa nepodarilo. Rozpísaná transakcia zostáva v telefóne, skús to znova."
   }
 }
