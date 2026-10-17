@@ -1,0 +1,19 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+.env
+.env.*
+
+# Android build výstupy
+apps/mobile/android/.gradle/
+apps/mobile/android/build/
+apps/mobile/android/app/build/
+apps/mobile/android/local.properties
+apps/mobile/android/app/src/main/assets/public/
+apps/mobile/android/capacitor-cordova-android-plugins/
+*.keystore
+*.jks
+
+# Firebase konfigurace pro Android si stáhneš z Firebase Console (neukládat do repa)
+google-services.json

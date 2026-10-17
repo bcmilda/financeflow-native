@@ -1,0 +1,82 @@
+{
+  "app": {
+    "nazev": "FinanceFlow",
+    "nav": {
+      "zBanky": "Von der Bank",
+      "nastaveni": "Einstellungen"
+    },
+    "nacitam": "Wird geladen…"
+  },
+  "prihlaseni": {
+    "titulek": "Anmelden",
+    "popis": "Melde dich mit demselben Konto an wie auf financeflow.cz. Die Daten sind gemeinsam.",
+    "email": "E-Mail",
+    "heslo": "Passwort",
+    "prihlasit": "Anmelden",
+    "google": "Die Anmeldung mit Google kommt in der nächsten Version",
+    "chybaUdaje": "Falsche E-Mail oder falsches Passwort.",
+    "chybaObecna": "Die Anmeldung ist fehlgeschlagen. Bitte versuche es erneut."
+  },
+  "zBanky": {
+    "stavZapnuto": "Das Lesen von Bankbenachrichtigungen ist eingeschaltet",
+    "stavVypnuto": "Das Lesen von Bankbenachrichtigungen ist ausgeschaltet",
+    "stavNeniAndroid": "Das Lesen von Benachrichtigungen funktioniert nur in der Android-App. Hier kannst du die Texterkennung ausprobieren.",
+    "nastavit": "Einrichten",
+    "posledni": "Letzte Zahlungen aus Benachrichtigungen",
+    "prazdne": "Noch keine Zahlung. Sobald deine Bank eine Zahlungsbenachrichtigung sendet, erscheint sie hier und unter Transaktionen.",
+    "zapsano": "In Transaktionen gespeichert",
+    "duplicita": "Möglicherweise schon erfasst: {nazev}, {datum}",
+    "pridatPresto": "Trotzdem hinzufügen",
+    "zahodit": "Verwerfen",
+    "jinaMena": "Zahlung in Fremdwährung – bitte prüfen und manuell hinzufügen",
+    "nerozpoznane": "{n, plural, one {# Bankbenachrichtigung nicht erkannt} other {# Bankbenachrichtigungen nicht erkannt}}",
+    "nerozpoznanePopis": "Der Text bleibt nur auf diesem Telefon. Du kannst ihn kopieren und uns schicken, damit wir die Erkennung ergänzen.",
+    "kopirovat": "Kopieren",
+    "zkusitTitulek": "Benachrichtigungstext ausprobieren",
+    "zkusitBanka": "Bank",
+    "zkusitNadpis": "Titel der Benachrichtigung",
+    "zkusitText": "Text der Benachrichtigung",
+    "rozpoznat": "Erkennen",
+    "vysledekPlatba": "{typ, select, income {Einnahme} other {Ausgabe}} {castka} · {nazev}",
+    "vysledekIgnorovat": "Das ist keine ausgeführte Zahlung, sie wird nicht gespeichert.",
+    "vysledekNic": "Diese Benachrichtigung kann ich nicht erkennen."
+  },
+  "notifikace": {
+    "titulek": "Zahlungen aus Bankbenachrichtigungen",
+    "upozorneniNadpis": "Was die App liest und warum",
+    "upozorneniBod1": "Sie liest nur Benachrichtigungen der Bank-Apps, die du unten auswählst. Benachrichtigungen anderer Apps werden ignoriert und nirgends gespeichert.",
+    "upozorneniBod2": "Aus einer Zahlungsbenachrichtigung übernimmt sie Betrag, Händler, Datum und die letzten 4 Ziffern der Karte und speichert eine Transaktion in deinem FinanceFlow-Konto.",
+    "upozorneniBod3": "Kontonummern und vollständige Benachrichtigungstexte werden nirgendwohin gesendet.",
+    "upozorneniBod4": "Du kannst das Lesen jederzeit in den Einstellungen deines Telefons ausschalten.",
+    "souhlas": "Verstanden, weiter",
+    "krokPristup": "1. Zugriff auf Benachrichtigungen erlauben",
+    "krokPristupPopis": "Suche FinanceFlow in der Liste und schalte es ein.",
+    "krokBaterie": "2. Akku-Optimierung für FinanceFlow ausschalten",
+    "krokBateriePopis": "Manche Telefone (Xiaomi, Samsung, Huawei) versetzen die App sonst im Hintergrund in den Ruhezustand, und sie verpasst Benachrichtigungen.",
+    "krokBanky": "3. Wähle deine Banken",
+    "otevritNastaveni": "Einstellungen öffnen",
+    "hotovo": "Fertig",
+    "neovereno": "noch nicht geprüft",
+    "penezenka": "Geldbörse",
+    "zadnaPenezenka": "Ohne Geldbörse",
+    "karta": "Karte •••• {karta4}",
+    "pruzkumNadpis": "Du siehst deine Bank nicht?",
+    "pruzkumPopis": "Starte die Suche, öffne die App deiner Bank und lass dir eine beliebige Benachrichtigung schicken. Die App merkt sich nur den App-Namen, nicht den Inhalt.",
+    "pruzkumSpustit": "5 Minuten suchen",
+    "pruzkumBezi": "Suche läuft… noch {minut, plural, one {# Minute} other {# Minuten}}",
+    "pruzkumNalezeno": "Apps, die eine Benachrichtigung gesendet haben",
+    "priradit": "Einer Bank zuordnen"
+  },
+  "nastaveni": {
+    "titulek": "Einstellungen",
+    "jazyk": "Sprache",
+    "region": "Land (Steuern, Banken)",
+    "regionCZ": "Tschechien",
+    "ucet": "Konto",
+    "odhlasit": "Abmelden",
+    "verze": "Version {verze}"
+  },
+  "pocet": {
+    "transakce": "{n, plural, one {# Transaktion} other {# Transaktionen}}"
+  }
+}

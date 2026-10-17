@@ -1,0 +1,82 @@
+{
+  "app": {
+    "nazev": "FinanceFlow",
+    "nav": {
+      "zBanky": "From bank",
+      "nastaveni": "Settings"
+    },
+    "nacitam": "Loading…"
+  },
+  "prihlaseni": {
+    "titulek": "Sign in",
+    "popis": "Sign in with the same account you use on financeflow.cz. Your data is shared.",
+    "email": "Email",
+    "heslo": "Password",
+    "prihlasit": "Sign in",
+    "google": "Google sign-in is coming in the next version",
+    "chybaUdaje": "Wrong email or password.",
+    "chybaObecna": "Sign-in failed. Please try again."
+  },
+  "zBanky": {
+    "stavZapnuto": "Reading bank notifications is on",
+    "stavVypnuto": "Reading bank notifications is off",
+    "stavNeniAndroid": "Reading notifications only works in the Android app. You can try text recognition here.",
+    "nastavit": "Set up",
+    "posledni": "Recent payments from notifications",
+    "prazdne": "No payments yet. When your bank sends a payment notification, it will appear here and in Transactions.",
+    "zapsano": "Saved to transactions",
+    "duplicita": "Possibly already recorded: {nazev}, {datum}",
+    "pridatPresto": "Add anyway",
+    "zahodit": "Discard",
+    "jinaMena": "Payment in a foreign currency – check it and add it manually",
+    "nerozpoznane": "{n, plural, one {# bank notification not recognised} other {# bank notifications not recognised}}",
+    "nerozpoznanePopis": "The text stays on this phone only. You can copy it and send it to us so we can add support.",
+    "kopirovat": "Copy",
+    "zkusitTitulek": "Try a notification text",
+    "zkusitBanka": "Bank",
+    "zkusitNadpis": "Notification title",
+    "zkusitText": "Notification text",
+    "rozpoznat": "Recognise",
+    "vysledekPlatba": "{typ, select, income {Income} other {Expense}} {castka} · {nazev}",
+    "vysledekIgnorovat": "This is not a completed payment, it won't be saved.",
+    "vysledekNic": "I can't recognise this notification."
+  },
+  "notifikace": {
+    "titulek": "Payments from bank notifications",
+    "upozorneniNadpis": "What the app reads and why",
+    "upozorneniBod1": "It only reads notifications from the bank apps you choose below. Notifications from other apps are ignored and never stored.",
+    "upozorneniBod2": "From a payment notification it takes the amount, merchant, date and the last 4 digits of the card, and saves a transaction to your FinanceFlow account.",
+    "upozorneniBod3": "Account numbers and full notification texts are never sent anywhere.",
+    "upozorneniBod4": "You can turn reading off at any time in your phone settings.",
+    "souhlas": "I understand, continue",
+    "krokPristup": "1. Allow notification access",
+    "krokPristupPopis": "Find FinanceFlow in the list and turn it on.",
+    "krokBaterie": "2. Turn off battery optimisation for FinanceFlow",
+    "krokBateriePopis": "Some phones (Xiaomi, Samsung, Huawei) otherwise put the app to sleep and it misses notifications.",
+    "krokBanky": "3. Choose your banks",
+    "otevritNastaveni": "Open settings",
+    "hotovo": "Done",
+    "neovereno": "not verified yet",
+    "penezenka": "Wallet",
+    "zadnaPenezenka": "No wallet",
+    "karta": "Card •••• {karta4}",
+    "pruzkumNadpis": "Can't see your bank?",
+    "pruzkumPopis": "Start the search, open your bank app and get it to send any notification. The app only remembers the app name, not the content.",
+    "pruzkumSpustit": "Search for 5 minutes",
+    "pruzkumBezi": "Searching… {minut, plural, one {# minute} other {# minutes}} left",
+    "pruzkumNalezeno": "Apps that sent a notification",
+    "priradit": "Assign to bank"
+  },
+  "nastaveni": {
+    "titulek": "Settings",
+    "jazyk": "Language",
+    "region": "Country (taxes, banks)",
+    "regionCZ": "Czechia",
+    "ucet": "Account",
+    "odhlasit": "Sign out",
+    "verze": "Version {verze}"
+  },
+  "pocet": {
+    "transakce": "{n, plural, one {# transaction} other {# transactions}}"
+  }
+}

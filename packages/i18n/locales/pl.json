@@ -1,0 +1,82 @@
+{
+  "app": {
+    "nazev": "FinanceFlow",
+    "nav": {
+      "zBanky": "Z banku",
+      "nastaveni": "Ustawienia"
+    },
+    "nacitam": "Wczytywanie…"
+  },
+  "prihlaseni": {
+    "titulek": "Logowanie",
+    "popis": "Zaloguj się tym samym kontem co na financeflow.cz. Dane są wspólne.",
+    "email": "E-mail",
+    "heslo": "Hasło",
+    "prihlasit": "Zaloguj się",
+    "google": "Logowanie przez Google będzie w następnej wersji",
+    "chybaUdaje": "Nieprawidłowy e-mail lub hasło.",
+    "chybaObecna": "Logowanie nie powiodło się. Spróbuj ponownie."
+  },
+  "zBanky": {
+    "stavZapnuto": "Odczyt powiadomień z banku jest włączony",
+    "stavVypnuto": "Odczyt powiadomień z banku jest wyłączony",
+    "stavNeniAndroid": "Odczyt powiadomień działa tylko w aplikacji na Androida. Tutaj możesz wypróbować rozpoznawanie tekstu.",
+    "nastavit": "Skonfiguruj",
+    "posledni": "Ostatnie płatności z powiadomień",
+    "prazdne": "Na razie brak płatności. Gdy bank wyśle powiadomienie o płatności, pojawi się ono tutaj i w Transakcjach.",
+    "zapsano": "Zapisano w transakcjach",
+    "duplicita": "Możliwe, że już zapisano: {nazev}, {datum}",
+    "pridatPresto": "Dodaj mimo to",
+    "zahodit": "Odrzuć",
+    "jinaMena": "Płatność w obcej walucie – sprawdź i dodaj ręcznie",
+    "nerozpoznane": "{n, plural, one {Nie rozpoznano # powiadomienia banku} few {Nie rozpoznano # powiadomień banku} many {Nie rozpoznano # powiadomień banku} other {Nie rozpoznano # powiadomienia banku}}",
+    "nerozpoznanePopis": "Tekst zostaje tylko w tym telefonie. Możesz go skopiować i wysłać nam, abyśmy dodali obsługę.",
+    "kopirovat": "Kopiuj",
+    "zkusitTitulek": "Wypróbuj tekst powiadomienia",
+    "zkusitBanka": "Bank",
+    "zkusitNadpis": "Tytuł powiadomienia",
+    "zkusitText": "Treść powiadomienia",
+    "rozpoznat": "Rozpoznaj",
+    "vysledekPlatba": "{typ, select, income {Przychód} other {Wydatek}} {castka} · {nazev}",
+    "vysledekIgnorovat": "To nie jest zrealizowana płatność, nie zostanie zapisana.",
+    "vysledekNic": "Nie potrafię rozpoznać tego powiadomienia."
+  },
+  "notifikace": {
+    "titulek": "Płatności z powiadomień banku",
+    "upozorneniNadpis": "Co aplikacja odczytuje i dlaczego",
+    "upozorneniBod1": "Odczytuje tylko powiadomienia aplikacji bankowych, które wybierzesz poniżej. Powiadomienia innych aplikacji ignoruje i nigdzie ich nie zapisuje.",
+    "upozorneniBod2": "Z powiadomienia o płatności pobiera kwotę, sprzedawcę, datę i 4 ostatnie cyfry karty, a następnie zapisuje transakcję na Twoim koncie FinanceFlow.",
+    "upozorneniBod3": "Numery kont i pełne treści powiadomień nigdzie nie są wysyłane.",
+    "upozorneniBod4": "Odczyt możesz w każdej chwili wyłączyć w ustawieniach telefonu.",
+    "souhlas": "Rozumiem, kontynuuj",
+    "krokPristup": "1. Zezwól na dostęp do powiadomień",
+    "krokPristupPopis": "Znajdź FinanceFlow na liście i włącz go.",
+    "krokBaterie": "2. Wyłącz oszczędzanie baterii dla FinanceFlow",
+    "krokBateriePopis": "Niektóre telefony (Xiaomi, Samsung, Huawei) w przeciwnym razie usypiają aplikację w tle i nie dostaje ona powiadomień.",
+    "krokBanky": "3. Wybierz swoje banki",
+    "otevritNastaveni": "Otwórz ustawienia",
+    "hotovo": "Gotowe",
+    "neovereno": "jeszcze niezweryfikowane",
+    "penezenka": "Portfel",
+    "zadnaPenezenka": "Bez portfela",
+    "karta": "Karta •••• {karta4}",
+    "pruzkumNadpis": "Nie widzisz swojego banku?",
+    "pruzkumPopis": "Uruchom wyszukiwanie, otwórz aplikację banku i poczekaj na dowolne powiadomienie. Aplikacja zapamięta tylko nazwę aplikacji, nie treść.",
+    "pruzkumSpustit": "Szukaj przez 5 minut",
+    "pruzkumBezi": "Szukam… zostało {minut, plural, one {# minuta} few {# minuty} many {# minut} other {# minuty}}",
+    "pruzkumNalezeno": "Aplikacje, które wysłały powiadomienie",
+    "priradit": "Przypisz do banku"
+  },
+  "nastaveni": {
+    "titulek": "Ustawienia",
+    "jazyk": "Język",
+    "region": "Kraj (podatki, banki)",
+    "regionCZ": "Czechy",
+    "ucet": "Konto",
+    "odhlasit": "Wyloguj się",
+    "verze": "Wersja {verze}"
+  },
+  "pocet": {
+    "transakce": "{n, plural, one {# transakcja} few {# transakcje} many {# transakcji} other {# transakcji}}"
+  }
+}

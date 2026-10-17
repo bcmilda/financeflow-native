@@ -1,0 +1,28 @@
+{
+  "name": "financeflow-native",
+  "private": true,
+  "version": "0.1.0",
+  "description": "FinanceFlow Native – nová vícejazyčná appka nad stejnými daty jako financeflow.cz",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "kontrola": "node tools/kontrola-prekladu.mjs && node tools/kontrola-textu.mjs",
+    "build": "npm run build -w apps/mobile",
+    "dev": "npm run dev -w apps/mobile",
+    "vse": "npm run kontrola && npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@formatjs/icu-messageformat-parser": "^3.5.21",
+    "intl-messageformat": "^12.1.3",
+    "typescript": "5.9.3",
+    "vitest": "^5.0.5"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

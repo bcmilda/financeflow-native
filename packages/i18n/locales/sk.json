@@ -1,0 +1,82 @@
+{
+  "app": {
+    "nazev": "FinanceFlow",
+    "nav": {
+      "zBanky": "Z banky",
+      "nastaveni": "Nastavenia"
+    },
+    "nacitam": "Načítavam…"
+  },
+  "prihlaseni": {
+    "titulek": "Prihlásenie",
+    "popis": "Prihlás sa rovnakým účtom ako na financeflow.cz. Údaje sú spoločné.",
+    "email": "E-mail",
+    "heslo": "Heslo",
+    "prihlasit": "Prihlásiť sa",
+    "google": "Prihlásenie cez Google bude v ďalšej verzii",
+    "chybaUdaje": "Nesprávny e-mail alebo heslo.",
+    "chybaObecna": "Prihlásenie sa nepodarilo. Skús to znova."
+  },
+  "zBanky": {
+    "stavZapnuto": "Čítanie upozornení z banky je zapnuté",
+    "stavVypnuto": "Čítanie upozornení z banky je vypnuté",
+    "stavNeniAndroid": "Čítanie upozornení funguje len v aplikácii pre Android. Tu si môžeš vyskúšať rozpoznanie textu.",
+    "nastavit": "Nastaviť",
+    "posledni": "Posledné platby z upozornení",
+    "prazdne": "Zatiaľ žiadna platba. Keď ti banka pošle upozornenie o platbe, objaví sa tu a v Transakciách.",
+    "zapsano": "Zapísané do transakcií",
+    "duplicita": "Možno už zapísané: {nazev}, {datum}",
+    "pridatPresto": "Aj tak pridať",
+    "zahodit": "Zahodiť",
+    "jinaMena": "Platba v cudzej mene – skontroluj a pridaj ručne",
+    "nerozpoznane": "{n, plural, one {# upozornenie banky som nerozpoznal} few {# upozornenia banky som nerozpoznal} many {# upozornenia banky som nerozpoznal} other {# upozornení banky som nerozpoznal}}",
+    "nerozpoznanePopis": "Text zostáva len v tomto telefóne. Môžeš ho skopírovať a poslať nám, aby sme rozpoznávanie doplnili.",
+    "kopirovat": "Kopírovať",
+    "zkusitTitulek": "Vyskúšať text upozornenia",
+    "zkusitBanka": "Banka",
+    "zkusitNadpis": "Nadpis upozornenia",
+    "zkusitText": "Text upozornenia",
+    "rozpoznat": "Rozpoznať",
+    "vysledekPlatba": "{typ, select, income {Príjem} other {Výdavok}} {castka} · {nazev}",
+    "vysledekIgnorovat": "Nie je to vykonaná platba, nezapíše sa.",
+    "vysledekNic": "Toto upozornenie neviem rozpoznať."
+  },
+  "notifikace": {
+    "titulek": "Platby z upozornení banky",
+    "upozorneniNadpis": "Čo aplikácia číta a prečo",
+    "upozorneniBod1": "Číta len upozornenia aplikácií bánk, ktoré si nižšie vyberieš. Upozornenia ostatných aplikácií ignoruje a nikam ich neukladá.",
+    "upozorneniBod2": "Z upozornenia o platbe vezme sumu, obchodníka, dátum a posledné 4 číslice karty a zapíše transakciu do tvojho účtu FinanceFlow.",
+    "upozorneniBod3": "Čísla účtov ani celé texty upozornení sa nikam neodosielajú.",
+    "upozorneniBod4": "Čítanie môžeš kedykoľvek vypnúť v nastaveniach telefónu.",
+    "souhlas": "Rozumiem, pokračovať",
+    "krokPristup": "1. Povoľ prístup k upozorneniam",
+    "krokPristupPopis": "V zozname nájdi FinanceFlow a zapni ho.",
+    "krokBaterie": "2. Vypni šetrenie batérie pre FinanceFlow",
+    "krokBateriePopis": "Niektoré telefóny (Xiaomi, Samsung, Huawei) inak aplikáciu na pozadí uspia a upozornenie nedostane.",
+    "krokBanky": "3. Vyber svoje banky",
+    "otevritNastaveni": "Otvoriť nastavenia",
+    "hotovo": "Hotovo",
+    "neovereno": "zatiaľ neoverené",
+    "penezenka": "Peňaženka",
+    "zadnaPenezenka": "Bez peňaženky",
+    "karta": "Karta •••• {karta4}",
+    "pruzkumNadpis": "Nevidíš svoju banku?",
+    "pruzkumPopis": "Spusti hľadanie, otvor aplikáciu banky a nechaj si poslať akékoľvek upozornenie. Aplikácia si zapamätá len názov aplikácie, nie obsah.",
+    "pruzkumSpustit": "Hľadať 5 minút",
+    "pruzkumBezi": "Hľadám… zostáva {minut, plural, one {# minúta} few {# minúty} many {# minúty} other {# minút}}",
+    "pruzkumNalezeno": "Aplikácie, ktoré poslali upozornenie",
+    "priradit": "Priradiť k banke"
+  },
+  "nastaveni": {
+    "titulek": "Nastavenia",
+    "jazyk": "Jazyk",
+    "region": "Krajina (dane, banky)",
+    "regionCZ": "Česko",
+    "ucet": "Účet",
+    "odhlasit": "Odhlásiť sa",
+    "verze": "Verzia {verze}"
+  },
+  "pocet": {
+    "transakce": "{n, plural, one {# transakcia} few {# transakcie} many {# transakcie} other {# transakcií}}"
+  }
+}
