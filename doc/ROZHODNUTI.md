@@ -54,6 +54,14 @@
 
 **N-109 · Data v telefonu.** Živá synchronizace po jednotlivých transakcích, poslední snímek dat v zařízení (start bez internetu), fronta zápisů v zařízení (zápis bez internetu se odešle později, i po restartu), koncepty rozepsaných formulářů. Úprava transakce zapisuje jen změněná pole. Mazání bez dotazu, se „Zpět“.
 
+**N-110 · Přesun mezi peněženkami jako web** (`premium.js doTransfer`): dvě transakce se společným `transferId`, `category: 'transfer'`, id ve tvaru `uid()` (`'id' + ms + 4 znaky`). Název transakce v jazyce uživatele (data se nepřekládají zpětně).
+- Vyladění proti webu: web při různé měně peněženek zapíše do obou stejné číslo (100 € → +100 Kč). Nativní appka chce i připsanou částku v cílové měně.
+- Transakce z přesunu se v nativní appce otevírá jako celý přesun. Jednu stranu samostatně upravit nejde (rozbil by se pár), smazání smaže obě strany se „Zpět“.
+
+**N-111 · Peněženky, kategorie a půjčky zatím jen ke čtení.** Web je ukládá jako celá pole (`data/wallets`, `data/categories`, `data/debts`) – zápis z telefonu by mohl přepsat souběžnou změnu z webu. Úpravy až s bezpečným slučováním (k návrhu v další session).
+
+**N-112 · Navigace:** spodní menu Přehled · Transakce · Z banky · Více. „Více“ je rozcestník dalších obrazovek klonu (Peněženky, Kategorie, Půjčky, Nastavení). Tlačítko ‹ v hlavičce a systémové Zpět vedou o úroveň výš.
+
 ## Otevřené
 
 - Zápis na pozadí, když appka neběží. Dnes se oznámení uloží do fronty v telefonu vždy, transakce se zapíše při nejbližším otevření appky (nebo hned, když běží).

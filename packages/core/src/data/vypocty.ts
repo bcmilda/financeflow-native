@@ -191,3 +191,8 @@ export function zustatekPenezenky(walletId: string, D: Pick<DataUzivatele, 'wall
     .filter(t => t.wallet === walletId)
     .reduce((s, t) => s + (poStavu(t, w) ? znamenko(t) : 0), 0);
 }
+
+/** Kolik transakcí patří k peněžence (včetně obou stran přesunů). Web: walletUsageCount. */
+export function pocetTransakciPenezenky(id: string, D: Pick<DataUzivatele, 'transactions'>): number {
+  return (D.transactions ?? []).filter(t => t && (t.walletId === id || t.wallet === id || t.fromWallet === id || t.toWallet === id)).length;
+}

@@ -1,6 +1,6 @@
 # Parita s webem
 
-Nativní appka je klon webu (N-009). Tabulka podle stránek webu (`PAGE_TITLES` v `js/app.js`, web v11.77).
+Nativní appka je klon webu (N-009). Tabulka podle stránek webu (`PAGE_TITLES` v `js/app.js`, web v12.04, nativní n0.3).
 
 ✅ hotovo · 🟡 částečně · ⬜ zatím ne · ➕ jen v nativní appce
 
@@ -8,11 +8,11 @@ Nativní appka je klon webu (N-009). Tabulka podle stránek webu (`PAGE_TITLES` 
 |---|---|---|
 | Dashboard | 🟡 Přehled | Souhrnné karty, výdaje podle kategorií, poslední transakce ✅. Chybí: finanční skóre, treemap/bublinový graf, graf 12 měsíců, přehled přesunů, čisté jmění, narozeniny, onboarding, měsíční checklist |
 | Transakce | 🟡 Transakce | Seznam po dnech, hledání, filtry, přidání, úprava, smazání se Zpět ✅. Chybí: štítky, rozdělení, hromadné úpravy, typ platby, projekt |
-| Peněženky | 🟡 | Zůstatky v Přehledu ✅. Chybí: správa peněženek, přesuny mezi peněženkami, zůstatek ke dni, archiv |
+| Peněženky | 🟡 Více → Peněženky | Seznam se zůstatky, archiv, detail s transakcemi, přesun mezi peněženkami (i různé měny), smazání přesunu ✅. Chybí: založení a úprava peněženky, zůstatek ke dni, převod do cíle |
 | Import z banky (smsimport) | ➕ Z banky | Nativně čte oznámení (Android) + ruční vyzkoušení textu |
 | Nastavení | 🟡 | Jazyk ✅, odhlášení ✅. Ostatní nastavení webu ⬜ |
-| Kategorie | ⬜ | Čte se, správa chybí |
-| Půjčky (dluhy) | ⬜ | Součet zbývajících dluhů v Přehledu ✅ |
+| Kategorie | 🟡 Více → Kategorie | Částky za měsíc (výdaje, příjmy, spoření/investice), rozklik do Transakcí ✅. Chybí: správa kategorií, limity zdraví |
+| Půjčky (dluhy) | 🟡 Více → Půjčky | Karty půjček: zbývá, splátka, příští splátka, po splatnosti, zaplaceno v appce, splaceno %, splátky za měsíc ✅. Chybí: úpravy, kalendář splátek, jistina/úrok, simulace, stres index, DTI/DSTI |
 | Souhrn výdajů | ⬜ | |
 | Tagy | ⬜ | |
 | Bank | ⬜ | |

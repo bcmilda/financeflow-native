@@ -13,12 +13,31 @@ import { FormularTransakce } from './obrazovky/FormularTransakce';
 import { ZBanky } from './obrazovky/ZBanky';
 import { NastaveniNotifikaci } from './obrazovky/NastaveniNotifikaci';
 import { NastaveniObrazovka } from './obrazovky/Nastaveni';
+import { Vice, type PolozkaVice } from './obrazovky/Vice';
+import { DetailPenezenky, Penezenky } from './obrazovky/Penezenky';
+import { DetailPresunu, Presun } from './obrazovky/Presun';
+import { Kategorie } from './obrazovky/Kategorie';
+import { Pujcky } from './obrazovky/Pujcky';
 
-type Zalozka = 'prehled' | 'transakce' | 'zBanky' | 'nastaveni';
-const ZALOZKY: Zalozka[] = ['prehled', 'transakce', 'zBanky', 'nastaveni'];
+type Zalozka = 'prehled' | 'transakce' | 'zBanky' | 'vice';
+const ZALOZKY: Zalozka[] = ['prehled', 'transakce', 'zBanky', 'vice'];
 
-/** Otevřený formulář: null = žádný, 'novy' = nová transakce, jinak upravovaná. */
-type Formular = null | 'novy' | Tx;
+/**
+ * Co je otevřené nad záložkou. Zpět (systémové tlačítko i po uložení) vede o úroveň výš:
+ * formulář/detail → podstránka → záložka → Přehled.
+ */
+type Podstranka =
+  | null
+  | { typ: 'vice'; polozka: PolozkaVice }
+  | { typ: 'penezenka'; id: string }
+  | { typ: 'notifikace' };
+
+/** Překryv nad vším: formulář transakce, nový přesun, detail přesunu. */
+type Prekryv =
+  | null
+  | { typ: 'tx'; tx: Tx | null }
+  | { typ: 'presun'; z: string | null }
+  | { typ: 'detailPresunu'; transferId: string };
 
 export function App() {
   const { t } = useTranslation();
@@ -45,88 +64,123 @@ export function Prihlaseny({ uzivatel }: { uzivatel: Pick<User, 'uid' | 'email'>
     return () => clearTimeout(id);
   }, [pripojeno]);
   const [zalozka, setZalozka] = useState<Zalozka>('prehled');
-  const [nastaveniNotifikaci, setNastaveniNotifikaci] = useState(false);
-  const [formular, setFormular] = useState<Formular>(null);
+  const [podstranka, setPodstranka] = useState<Podstranka>(null);
+  const [prekryv, setPrekryv] = useState<Prekryv>(null);
   const [mesic, setMesic] = useState<Mesic>(dnesniMesic);
-  const [smazana, setSmazana] = useState<Tx | null>(null);
+  const [filtrKategorie, setFiltrKategorie] = useState<string | null>(null);
+  const [smazane, setSmazane] = useState<Tx[]>([]);
   const casovacZpet = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const ukazZpet = useCallback((tx: Tx) => {
-    setSmazana(tx);
+  const ukazZpet = useCallback((txs: Tx[]) => {
+    if (!txs.length) return;
+    setSmazane(txs);
     if (casovacZpet.current) clearTimeout(casovacZpet.current);
-    casovacZpet.current = setTimeout(() => setSmazana(null), 6000);
+    casovacZpet.current = setTimeout(() => setSmazane([]), 6000);
   }, []);
 
-  async function vratitSmazanou() {
-    if (!smazana) return;
-    await pridatTransakci(smazana);
-    setSmazana(null);
+  async function vratitSmazane() {
+    const k = smazane;
+    setSmazane([]);
+    for (const tx of k) await pridatTransakci(tx);
   }
 
-  // Systémové tlačítko Zpět (Android): formulář → seznam, jiná záložka → Přehled, jinak appku schovat.
-  const stavRef = useRef({ formular, nastaveniNotifikaci, zalozka });
-  stavRef.current = { formular, nastaveniNotifikaci, zalozka };
+  const nahoru = () => window.scrollTo(0, 0);
+
+  /** O úroveň zpět. Vrací false, když už není kam (appka se schová). */
+  const zpet = useCallback((): boolean => {
+    if (prekryv) { setPrekryv(null); return true; }
+    if (podstranka?.typ === 'penezenka') { setPodstranka({ typ: 'vice', polozka: 'penezenky' }); return true; }
+    if (podstranka) { setPodstranka(null); return true; }
+    if (filtrKategorie && zalozka === 'transakce') { setFiltrKategorie(null); setZalozka('vice'); setPodstranka({ typ: 'vice', polozka: 'kategorie' }); return true; }
+    if (zalozka !== 'prehled') { setZalozka('prehled'); return true; }
+    return false;
+  }, [prekryv, podstranka, zalozka, filtrKategorie]);
+
+  const zpetRef = useRef(zpet);
+  zpetRef.current = zpet;
   useEffect(() => {
-    const p = CapApp.addListener('backButton', () => {
-      const s = stavRef.current;
-      if (s.formular) setFormular(null);
-      else if (s.nastaveniNotifikaci) setNastaveniNotifikaci(false);
-      else if (s.zalozka !== 'prehled') setZalozka('prehled');
-      else void CapApp.minimizeApp();
-    });
+    const p = CapApp.addListener('backButton', () => { if (!zpetRef.current()) void CapApp.minimizeApp(); });
     return () => { void p.then(h => h.remove()); };
   }, []);
 
   function prepni(z: Zalozka) {
-    setFormular(null);
-    setNastaveniNotifikaci(false);
+    setPrekryv(null);
+    setPodstranka(null);
+    if (z !== 'transakce') setFiltrKategorie(null);
     setZalozka(z);
-    window.scrollTo(0, 0);
+    nahoru();
   }
 
-  const otevrit = (tx: Tx) => { setFormular(tx); window.scrollTo(0, 0); };
-  const ukazujeFab = !formular && (zalozka === 'prehled' || zalozka === 'transakce');
+  /** Transakce z přesunu se otevírá jako celý přesun (obě strany), ostatní ve formuláři. */
+  const otevrit = (tx: Tx) => {
+    setPrekryv(tx.transferId ? { typ: 'detailPresunu', transferId: String(tx.transferId) } : { typ: 'tx', tx });
+    nahoru();
+  };
+
+  function obsah() {
+    if (prekryv?.typ === 'tx') {
+      return <FormularTransakce key={prekryv.tx ? String(prekryv.tx.id) : 'novy'} tx={prekryv.tx}
+        onHotovo={() => setPrekryv(null)} onSmazano={tx => ukazZpet([tx])} />;
+    }
+    if (prekryv?.typ === 'presun') return <Presun z={prekryv.z} onHotovo={() => setPrekryv(null)} />;
+    if (prekryv?.typ === 'detailPresunu') {
+      return <DetailPresunu transferId={prekryv.transferId} onHotovo={() => setPrekryv(null)} onSmazano={ukazZpet} />;
+    }
+    if (podstranka?.typ === 'notifikace') return <NastaveniNotifikaci uid={uzivatel.uid} onHotovo={() => setPodstranka(null)} />;
+    if (podstranka?.typ === 'penezenka') {
+      return <DetailPenezenky id={podstranka.id} onOtevrit={otevrit} onPresun={z => { setPrekryv({ typ: 'presun', z }); nahoru(); }} />;
+    }
+    if (podstranka?.typ === 'vice') {
+      switch (podstranka.polozka) {
+        case 'penezenky':
+          return <Penezenky onDetail={id => { setPodstranka({ typ: 'penezenka', id }); nahoru(); }} onPresun={() => { setPrekryv({ typ: 'presun', z: null }); nahoru(); }} />;
+        case 'kategorie':
+          return <Kategorie mesic={mesic} onMesic={setMesic} onOtevrit={catId => { setFiltrKategorie(catId); setPodstranka(null); setZalozka('transakce'); nahoru(); }} />;
+        case 'pujcky': return <Pujcky />;
+        case 'nastaveni': return <NastaveniObrazovka email={uzivatel.email ?? ''} />;
+      }
+    }
+    switch (zalozka) {
+      case 'prehled': return <Prehled mesic={mesic} onMesic={setMesic} onOtevrit={otevrit} onVse={() => prepni('transakce')} />;
+      case 'transakce':
+        return <Transakce mesic={mesic} onMesic={setMesic} onOtevrit={otevrit} kategorie={filtrKategorie} onZrusitKategorii={() => setFiltrKategorie(null)} />;
+      case 'zBanky': return <ZBanky uid={uzivatel.uid} onNastavit={() => setPodstranka({ typ: 'notifikace' })} />;
+      case 'vice': return <Vice onOtevrit={p => { setPodstranka({ typ: 'vice', polozka: p }); nahoru(); }} />;
+    }
+  }
+
+  const ukazujeFab = !prekryv && !podstranka && (zalozka === 'prehled' || zalozka === 'transakce');
+  const ukazujeZpet = !!prekryv || !!podstranka;
 
   return (
     <div className="appka">
       <header className="hlavicka">
-        <h1>{t('app.nazev')}</h1>
+        <div className="hlavicka-levo">
+          {ukazujeZpet && <button className="ikona zpet" aria-label={t('app.zpet')} onClick={() => { zpet(); nahoru(); }}>‹</button>}
+          <h1>{t('app.nazev')}</h1>
+        </div>
         {(offline || cekajici > 0) && (
           <span className="stav-spojeni male" role="status">
             {[offline ? t('app.offline') : '', cekajici > 0 ? t('app.cekajici', { n: cekajici }) : ''].filter(Boolean).join(' · ')}
           </span>
         )}
       </header>
-      <main className="obsah">
-        {formular ? (
-          <FormularTransakce key={formular === 'novy' ? 'novy' : String(formular.id)} tx={formular === 'novy' ? null : formular}
-            onHotovo={() => setFormular(null)} onSmazano={ukazZpet} />
-        ) : nastaveniNotifikaci ? (
-          <NastaveniNotifikaci uid={uzivatel.uid} onHotovo={() => setNastaveniNotifikaci(false)} />
-        ) : (
-          <>
-            {zalozka === 'prehled' && <Prehled mesic={mesic} onMesic={setMesic} onOtevrit={otevrit} onVse={() => prepni('transakce')} />}
-            {zalozka === 'transakce' && <Transakce mesic={mesic} onMesic={setMesic} onOtevrit={otevrit} />}
-            {zalozka === 'zBanky' && <ZBanky uid={uzivatel.uid} onNastavit={() => setNastaveniNotifikaci(true)} />}
-            {zalozka === 'nastaveni' && <NastaveniObrazovka email={uzivatel.email ?? ''} />}
-          </>
-        )}
-      </main>
+      <main className="obsah">{obsah()}</main>
 
       {ukazujeFab && (
-        <button className="fab" aria-label={t('app.pridat')} onClick={() => { setFormular('novy'); window.scrollTo(0, 0); }}>+</button>
+        <button className="fab" aria-label={t('app.pridat')} onClick={() => { setPrekryv({ typ: 'tx', tx: null }); nahoru(); }}>+</button>
       )}
 
-      {smazana && (
+      {smazane.length > 0 && (
         <div className="toast" role="status">
-          <span>{t('formular.smazano')}</span>
-          <button onClick={() => void vratitSmazanou()}>{t('formular.zpet')}</button>
+          <span>{smazane.length > 1 ? t('presun.smazan') : t('formular.smazano')}</span>
+          <button onClick={() => void vratitSmazane()}>{t('formular.zpet')}</button>
         </div>
       )}
 
       <nav className="spodni-menu">
         {ZALOZKY.map(z => (
-          <button key={z} className={zalozka === z && !formular ? 'aktivni' : ''} onClick={() => prepni(z)}>
+          <button key={z} className={zalozka === z && !prekryv && !podstranka ? 'aktivni' : ''} onClick={() => prepni(z)}>
             {t(`app.nav.${z}`)}
           </button>
         ))}

@@ -32,3 +32,15 @@ Shrnutí v `doc/SESSION-N1.md`, další kroky v `doc/PLAN-SESSION-N2.md`.
 - **Android kód** (`android/app/src/main/java/cz/financeflow/nativni/`) zatím neprošel skutečným buildem – první build v CI ověřit jako úplně první krok N2.
 - Repo zatím není na GitHubu; poslední stav je v zipu `financeflow-native-n0.2.zip` (včetně historie git).
 
+---
+
+## Session N2 (24. 10. 2026) · n0.2 → n0.3
+
+Shrnutí v `doc/SESSION-N2.md`, další kroky v `doc/PLAN-SESSION-N3.md`. Repo stále není na GitHubu – blok A (telefon) se přesunul do N3.
+
+- **Nová obrazovka klonu** = položka ve „Více“ (`obrazovky/Vice.tsx`) + větev v `App.tsx` (`Podstranka` / `Prekryv`), Zpět o úroveň výš.
+- **Přesuny:** `vytvorPresun` v core, zápis dvou transakcí přes `pridatTransakci`. Transakci s `transferId` otevírat jako `DetailPresunu`, nikdy ve formuláři transakce.
+- **Peněženky, kategorie, půjčky jen čtení (N-111)** – web je ukládá jako celá pole.
+- **Web se mezi sessions mění** (N1 v11.77 → N2 v12.04). Na začátku session: `git fetch` webu, `git diff` výpočtových souborů, `npm run vse` (kontraktní test).
+- **Náhled bez Firebase:** testovací data a konfigurace Vite v scratchpadu (`nahled.tsx`, `vite.nahled.config.ts`, podvržený `firebase.ts`) – do appky kopírovat jen na dobu proklikání a před commitem smazat.
+

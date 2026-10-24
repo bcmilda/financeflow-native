@@ -3,14 +3,15 @@
     "nazev": "FinanceFlow",
     "nav": {
       "zBanky": "Von der Bank",
-      "nastaveni": "Einstellungen",
       "prehled": "Übersicht",
-      "transakce": "Transaktionen"
+      "transakce": "Transaktionen",
+      "vice": "Mehr"
     },
     "nacitam": "Wird geladen…",
     "pridat": "Transaktion hinzufügen",
     "offline": "Offline",
-    "cekajici": "{n, plural, one {# Änderung wartet auf Synchronisierung} other {# Änderungen warten auf Synchronisierung}}"
+    "cekajici": "{n, plural, one {# Änderung wartet auf Synchronisierung} other {# Änderungen warten auf Synchronisierung}}",
+    "zpet": "Zurück"
   },
   "prihlaseni": {
     "titulek": "Anmelden",
@@ -96,7 +97,15 @@
     "dalsi": "Nächster Monat"
   },
   "kategorie": {
-    "bez": "Ohne Kategorie"
+    "bez": "Ohne Kategorie",
+    "zadne": "Noch keine Kategorien.",
+    "skupina": {
+      "vydaje": "Ausgaben",
+      "prijmy": "Einnahmen",
+      "presuny": "Sparen und Investitionen (Umbuchungen)"
+    },
+    "podkategorii": "{n, plural, one {# Unterkategorie} other {# Unterkategorien}}",
+    "upravyNaWebu": "Kategorien bearbeitest du vorerst im Web."
   },
   "prehled": {
     "prijmy": "Einnahmen",
@@ -126,7 +135,9 @@
     "presun": "Umbuchung",
     "vyrovnani": "Ausgleich",
     "rozdeleno": "aufgeteilt",
-    "zNotifikace": "aus Benachrichtigung"
+    "zNotifikace": "aus Benachrichtigung",
+    "presunNazev": "Umbuchung",
+    "zrusitKategorii": "Kategoriefilter entfernen"
   },
   "formular": {
     "novy": "Neue Transaktion",
@@ -155,5 +166,85 @@
     "zahodit": "Verwerfen",
     "zNotifikace": "Automatisch aus einer Bankbenachrichtigung erfasst.",
     "chybaUlozeni": "Speichern fehlgeschlagen. Die angefangene Transaktion bleibt auf dem Telefon – bitte erneut versuchen."
+  },
+  "vice": {
+    "penezenky": "Geldbörsen",
+    "penezenkyPopis": "Kontostände und Umbuchungen zwischen Geldbörsen",
+    "kategorie": "Kategorien",
+    "kategoriePopis": "Wie viel in welche Kategorie fließt",
+    "pujcky": "Kredite",
+    "pujckyPopis": "Restschuld, Raten",
+    "nastaveni": "Einstellungen",
+    "nastaveniPopis": "Sprache, Konto"
+  },
+  "penezenky": {
+    "typ": {
+      "cash": "Bargeld",
+      "account": "Girokonto",
+      "savings": "Sparkonto",
+      "investment": "Investitionen",
+      "card": "Kreditkarte",
+      "other": "Sonstiges"
+    },
+    "zadne": "Du hast noch keine Geldbörse. Lege sie im Web unter Geldbörsen an.",
+    "archiv": "{n, plural, one {# archiviert} other {# archiviert}}",
+    "upravyNaWebu": "Geldbörsen legst du vorerst im Web an und bearbeitest sie dort. Umbuchungen gehen auch hier.",
+    "nenalezena": "Geldbörse nicht gefunden.",
+    "archivovana": "archiviert",
+    "zustatekKeDni": "Kontostand eingetragen zum {datum}",
+    "dalsi": "Mehr laden"
+  },
+  "presun": {
+    "titulek": "Umbuchung zwischen Geldbörsen",
+    "nazevOdchozi": "Umbuchung → {nazev}",
+    "nazevPrichozi": "Umbuchung ← {nazev}",
+    "vychoziPoznamka": "Umbuchung zwischen Geldbörsen",
+    "koncept": "Du hast eine angefangene Umbuchung ({cas}).",
+    "z": "Von Geldbörse",
+    "do": "Auf Geldbörse",
+    "chybaStejne": "Wähle zwei verschiedene Geldbörsen.",
+    "chybaPenezenky": "Wähle beide Geldbörsen.",
+    "castkaVMene": "Betrag ({mena})",
+    "castkaCil": "Gutgeschrieben ({mena})",
+    "ruzneMenyPopis": "Die Geldbörsen haben verschiedene Währungen – gib den tatsächlich gutgeschriebenen Betrag ein (zum Kurs der Bank).",
+    "chybaCastkaCil": "Gib den gutgeschriebenen Betrag ein.",
+    "vysvetleni": "Eine Umbuchung ist weder Einnahme noch Ausgabe – sie ändert nur die Kontostände beider Geldbörsen.",
+    "provest": "Umbuchen",
+    "nenalezen": "Umbuchung nicht gefunden.",
+    "detail": "Umbuchung",
+    "jenJednaStrana": "Die andere Seite der Umbuchung fehlt (im Web gelöscht).",
+    "upravaNaWebu": "Hier kannst du die Umbuchung löschen. Bearbeiten geht vorerst im Web.",
+    "zavrit": "Schließen",
+    "smazat": "Umbuchung löschen",
+    "smazan": "Umbuchung gelöscht"
+  },
+  "pujcky": {
+    "bezNazvu": "Kredit",
+    "splaceno": "Abbezahlt",
+    "typ": {
+      "personal": "Verbraucherkredit",
+      "mortgage": "Hypothek",
+      "nonbank": "Nichtbankkredit",
+      "credit": "Kreditkarte",
+      "ico": "Gewerbekredit",
+      "friend": "Von Bekannten"
+    },
+    "urok": "{urok} % p. a.",
+    "poSplatnosti": "{n, plural, one {# Rate ist überfällig} other {# Raten sind überfällig}}",
+    "splacenoZ": "{pct} getilgt von",
+    "zbyva": "Restschuld",
+    "frekvence": {
+      "monthly": "Monatliche Rate",
+      "weekly": "Wöchentliche Rate",
+      "biweekly": "Rate alle 2 Wochen"
+    },
+    "pristi": "Nächste Rate",
+    "zbyvaSplatek": "Verbleibende Raten",
+    "zaplacenoVAppce": "{n, plural, one {In der App bezahlt (# Rate):} other {In der App bezahlt (# Raten):}}",
+    "zadne": "Keine Kredite. 🎉",
+    "zbyvaCelkem": "Restschuld gesamt",
+    "mesicneCelkem": "Raten pro Monat",
+    "splacene": "Abbezahlt",
+    "upravyNaWebu": "Kredite und Tilgungspläne bearbeitest du vorerst im Web."
   }
 }

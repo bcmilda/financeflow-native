@@ -1,0 +1,30 @@
+{
+  "categories": [
+    { "id": "cat12", "name": "Banka", "type": "expense" },
+    { "id": "cat_splatky", "name": "Splátky", "type": "expense" }
+  ],
+  "wallets": [
+    { "id": "w1", "name": "Běžný účet", "currency": "CZK", "balance": 0 },
+    { "id": "w3", "name": "Euro účet", "currency": "EUR", "balance": 0 }
+  ],
+  "debts": [
+    { "id": "d1", "name": "Hypotéka", "type": "mortgage", "creditor": "KB", "interest": 4.9, "total": 2500000, "remaining": 2310000, "payment": 14250, "freq": "monthly",
+      "schedule": [ { "date": "2026-09-20", "payment": 14250, "paid": true }, { "date": "2026-10-20", "payment": 14250 }, { "date": "2026-11-20", "payment": 14250 } ] },
+    { "id": "d2", "name": "Nebankovka", "type": "nonbank", "interest": 89, "total": 20000, "remaining": 12000, "payment": 900, "freq": "weekly",
+      "schedule": [ { "date": "2026-10-01", "payment": 900 }, { "date": "2026-10-08", "payment": 900 }, { "date": "2026-10-29", "payment": 900 } ] },
+    { "id": "d3", "name": "Kamarád", "type": "friend", "interest": 0, "total": 6000, "remaining": 3000, "payment": 500, "freq": "biweekly" },
+    { "id": "d4", "name": "Kreditka 4U", "type": "credit", "interest": 25, "total": 30000, "remaining": 18000, "freq": "monthly",
+      "installments": [ { "from": "2026-01", "amt": 1000 }, { "from": "2026-10", "amt": 1500 }, { "from": "2026-12", "amt": 2000 } ] },
+    { "id": "d5", "name": "Splacený úvěr", "type": "personal", "total": 50000, "remaining": 0, "payment": 2500, "freq": "monthly" },
+    { "id": "d6", "name": "Bez zbytku", "type": "personal", "payment": 300, "freq": "monthly" }
+  ],
+  "transactions": [
+    { "id": 1, "type": "expense", "amount": 14250, "catId": "cat_splatky", "date": "2026-09-20", "wallet": "w1", "debtId": "d1" },
+    { "id": 2, "type": "expense", "amount": 14250, "catId": "cat_splatky", "date": "2026-08-20", "wallet": "w1", "debtId": "d1" },
+    { "id": 3, "type": "expense", "amount": 14250, "catId": "cat_splatky", "date": "2026-10-20", "wallet": "w1", "debtId": "d1", "debtCeka": true },
+    { "id": 4, "type": "expense", "amount": 3000, "catId": "cat_splatky", "date": "2026-09-05", "wallet": "w1", "debtId": "d2", "splitParent": true, "splitId": "s1" },
+    { "id": 5, "type": "expense", "amount": 900, "catId": "cat_splatky", "date": "2026-09-05", "debtId": "d2", "splitId": "s1" },
+    { "id": 6, "type": "expense", "amount": 20, "catId": "cat_splatky", "date": "2026-09-10", "wallet": "w3", "debtId": "d4" },
+    { "id": 7, "type": "expense", "amount": 40, "amtCZK": 1000, "catId": "cat_splatky", "date": "2026-09-12", "wallet": "w3", "debtId": "d4" }
+  ]
+}

@@ -1,6 +1,6 @@
 # Architektura
 
-Stav: **n0.2** (Session N1, 17. 10. 2026).
+Stav: **n0.3** (Session N2, 24. 10. 2026).
 
 ## Přehled
 
@@ -21,7 +21,7 @@ Stav: **n0.2** (Session N1, 17. 10. 2026).
 
 | Balíček | Co obsahuje | Testy |
 |---|---|---|
-| `packages/core` | `parsery/` oznámení bank · `schema/` tvar transakce webu (Zod) · `transakce/` transakce z oznámení, duplicity · `uctenky/` párování účtenky s platbou · `data/` výpočty z webu (příjmy, výdaje, přesuny, zůstatky) · `text/` normalizace | 68 (z toho 12 kontraktních s webem) |
+| `packages/core` | `parsery/` oznámení bank · `schema/` tvar transakce webu (Zod) · `transakce/` transakce z oznámení, duplicity · `uctenky/` párování účtenky s platbou · `data/` výpočty z webu (příjmy, výdaje, přesuny, zůstatky, `presuny.ts` přesun mezi peněženkami, `dluhy.ts` půjčky) · `text/` normalizace | 88 (z toho 20 kontraktních s webem) |
 | `packages/i18n` | `locales/*.json` (cs, en, sk, pl, de, uk), `vytvorI18n`, `formatCastka`, `formatDatum`, `formatCasRelativne`, `JAZYKY`, `REGIONY` | 7 |
 | `apps/mobile` | React + Vite + Capacitor 8, Android projekt v `android/` | 24 |
 | `tools/` | `kontrola-prekladu.mjs`, `kontrola-textu.mjs` | – |
@@ -30,7 +30,7 @@ Stav: **n0.2** (Session N1, 17. 10. 2026).
 
 | Soubor | Úloha |
 |---|---|
-| `App.tsx` | přihlášení, záložky (Přehled, Transakce, Z banky, Nastavení), tlačítko +, „Zpět“ po smazání, systémové tlačítko Zpět, stav spojení |
+| `App.tsx` | přihlášení, záložky (Přehled, Transakce, Z banky, Více), podstránky a překryvy (formulář, přesun, detail přesunu), tlačítko ‹ a systémové Zpět o úroveň výš, „Zpět“ po smazání (i obou stran přesunu), stav spojení |
 | `firebase.ts` | Firebase (stejný projekt jako web), přihlášení e-mailem i Google, obnova hesla |
 | `konfigurace.ts` | `GOOGLE_WEB_CLIENT_ID` (zatím prázdné – viz `doc/PRIHLASENI.md`) |
 | `data/sklad.ts` | živá data: transakce po jedné (onChildAdded/Changed/Removed), kategorie, peněženky, bank, dluhy; snímek v IndexedDB; `pridatTransakci`, `upravitTransakci` (jen změněná pole), `smazatTransakci`; `useSklad()` |
@@ -38,7 +38,8 @@ Stav: **n0.2** (Session N1, 17. 10. 2026).
 | `data/koncepty.ts` | rozepsané formuláře (Preferences) |
 | `data/formular-transakce.ts` | logika formuláře: nová transakce, změněná pole, kontrola |
 | `komponenty/spolecne.tsx` | výběr měsíce, částka, kategorie pro zobrazení, hledání, řazení |
-| `obrazovky/` | `Prihlaseni`, `Prehled`, `Transakce`, `FormularTransakce`, `ZBanky`, `NastaveniNotifikaci`, `Nastaveni` |
+| `komponenty/seznam-transakci.tsx` | řádek transakce (přesun = „Přesun“) a seznam po dnech |
+| `obrazovky/` | `Prihlaseni`, `Prehled`, `Transakce` (i filtr kategorie), `FormularTransakce`, `ZBanky`, `NastaveniNotifikaci`, `Nastaveni`, `Vice`, `Penezenky` (+ `DetailPenezenky`), `Presun` (+ `DetailPresunu`), `Kategorie`, `Pujcky` |
 | `notifikace/` | `plugin.ts` (most k Javě), `zpracovani.ts` (fronta → transakce), `sluzba.ts` (spouštění, zámek) |
 | `uloziste.ts` | nastavení appky a historie oznámení v telefonu |
 
@@ -56,14 +57,15 @@ Stav: **n0.2** (Session N1, 17. 10. 2026).
 
 - Zápis vždy jen `users/{uid}/data/transactions/{id}` (celá nová transakce) nebo update jejích polí. Nikdy celé `data` ani jiné sekce.
 - Tvar transakce viz `packages/core/src/schema/transakce.ts` a `data/typy.ts`. Web čte `amount || amt`.
-- Výpočty v `packages/core/src/data/vypocty.ts` odpovídají webu (helpers.js, premium.js @ v11.77). Kontraktní test to hlídá.
+- Výpočty v `packages/core/src/data/` odpovídají webu (helpers.js, premium.js, debts.js @ v12.04). Kontraktní test to hlídá.
+- Přesun z telefonu = dvě nové transakce (`pridatTransakci`), nic jiného se nezapisuje. Peněženky, kategorie a dluhy se jen čtou (N-111).
 
 ## Kontroly (`npm run vse`, totéž v CI)
 
 1. překlady (klíče, ICU, množná čísla, proměnné),
 2. žádný text natvrdo v komponentách,
 3. TypeScript strict,
-4. testy (99, z toho 12 kontraktních – v CI se web stáhne vedle),
+4. testy (119, z toho 20 kontraktních – v CI se web stáhne vedle),
 5. build. Android APK staví CI (`.github/workflows/ci.yml`).
 
 ## Android

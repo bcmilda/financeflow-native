@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { souhrnMesice, transakceMesice, vydajePodleKategorii, zustatekPenezenky, type Tx } from '@ff/core';
+import { idPresunovychKategorii, souhrnMesice, transakceMesice, vydajePodleKategorii, zustatekPenezenky, type Tx } from '@ff/core';
 import { localePro, type KodJazyka } from '@ff/i18n';
 import { useSklad } from '../data/sklad';
-import { Castka, menaTx, razeniTx, useKategorie, VyberMesice, type Mesic } from '../komponenty/spolecne';
+import { Castka, razeniTx, useKategorie, VyberMesice, type Mesic } from '../komponenty/spolecne';
+import { TxRadek } from '../komponenty/seznam-transakci';
 
 /**
  * Přehled měsíce – klon Dashboardu webu (souhrnné karty, výdaje podle kategorií,
@@ -19,6 +20,7 @@ export function Prehled({ mesic, onMesic, onOtevrit, onVse }: {
 
   const souhrn = useMemo(() => souhrnMesice(data, mesic.rok, mesic.mesic), [data, mesic]);
   const podleKategorii = useMemo(() => vydajePodleKategorii(data, mesic.rok, mesic.mesic), [data, mesic]);
+  const presunove = useMemo(() => idPresunovychKategorii(data), [data]);
   const posledni = useMemo(() => [...transakceMesice(data, mesic.rok, mesic.mesic)].sort(razeniTx).slice(0, 5), [data, mesic]);
   const penezenky = useMemo(
     () => data.wallets.filter(w => !w.archived).map(w => ({ w, zustatek: zustatekPenezenky(w.id, data) })),
@@ -98,21 +100,11 @@ export function Prehled({ mesic, onMesic, onOtevrit, onVse }: {
         </div>
         {posledni.length === 0 && <p className="tlumene">{t('transakce.prazdne')}</p>}
         <ul className="seznam">
-          {posledni.map(tx => {
-            const k = kat(tx.catId);
-            return (
-              <li key={String(tx.id)}>
-                <button className="tx-radek" onClick={() => onOtevrit(tx)}>
-                  <span className="tx-ikona" aria-hidden="true">{k.ikona}</span>
-                  <span className="tx-info">
-                    <span className="nazev">{tx.name || k.nazev}</span>
-                    <span className="male tlumene">{k.nazev}</span>
-                  </span>
-                  <Castka castka={Number(tx.amount || tx.amt || 0)} mena={menaTx(tx, data.wallets)} typ={tx.type} />
-                </button>
-              </li>
-            );
-          })}
+          {posledni.map(tx => (
+            <li key={String(tx.id)}>
+              <TxRadek tx={tx} kategorie={data.categories} penezenky={data.wallets} presunove={presunove} onOtevrit={onOtevrit} />
+            </li>
+          ))}
         </ul>
       </section>
 

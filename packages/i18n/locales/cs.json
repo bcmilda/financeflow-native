@@ -3,14 +3,15 @@
     "nazev": "FinanceFlow",
     "nav": {
       "zBanky": "Z banky",
-      "nastaveni": "Nastavení",
       "prehled": "Přehled",
-      "transakce": "Transakce"
+      "transakce": "Transakce",
+      "vice": "Více"
     },
     "nacitam": "Načítám…",
     "pridat": "Přidat transakci",
     "offline": "Bez připojení",
-    "cekajici": "{n, plural, one {# změna čeká na odeslání} few {# změny čekají na odeslání} many {# změny čeká na odeslání} other {# změn čeká na odeslání}}"
+    "cekajici": "{n, plural, one {# změna čeká na odeslání} few {# změny čekají na odeslání} many {# změny čeká na odeslání} other {# změn čeká na odeslání}}",
+    "zpet": "Zpět"
   },
   "prihlaseni": {
     "titulek": "Přihlášení",
@@ -96,7 +97,15 @@
     "dalsi": "Další měsíc"
   },
   "kategorie": {
-    "bez": "Bez kategorie"
+    "bez": "Bez kategorie",
+    "zadne": "Zatím žádné kategorie.",
+    "skupina": {
+      "vydaje": "Výdaje",
+      "prijmy": "Příjmy",
+      "presuny": "Spoření a investice (přesuny)"
+    },
+    "podkategorii": "{n, plural, one {# podkategorie} few {# podkategorie} many {# podkategorie} other {# podkategorií}}",
+    "upravyNaWebu": "Kategorie zatím upravuješ na webu."
   },
   "prehled": {
     "prijmy": "Příjmy",
@@ -126,7 +135,9 @@
     "presun": "přesun",
     "vyrovnani": "vyrovnání",
     "rozdeleno": "rozděleno",
-    "zNotifikace": "z oznámení"
+    "zNotifikace": "z oznámení",
+    "presunNazev": "Přesun",
+    "zrusitKategorii": "Zrušit filtr kategorie"
   },
   "formular": {
     "novy": "Nová transakce",
@@ -155,5 +166,85 @@
     "zahodit": "Zahodit",
     "zNotifikace": "Zapsáno automaticky z oznámení banky.",
     "chybaUlozeni": "Uložit se nepovedlo. Rozepsaná transakce zůstává v telefonu, zkus to znovu."
+  },
+  "vice": {
+    "penezenky": "Peněženky",
+    "penezenkyPopis": "Zůstatky a přesuny mezi peněženkami",
+    "kategorie": "Kategorie",
+    "kategoriePopis": "Kolik jde do které kategorie",
+    "pujcky": "Půjčky",
+    "pujckyPopis": "Zbývá splatit, splátky",
+    "nastaveni": "Nastavení",
+    "nastaveniPopis": "Jazyk, účet"
+  },
+  "penezenky": {
+    "typ": {
+      "cash": "Hotovost",
+      "account": "Běžný účet",
+      "savings": "Spořicí",
+      "investment": "Investice",
+      "card": "Kreditní karta",
+      "other": "Jiné"
+    },
+    "zadne": "Zatím nemáš žádnou peněženku. Založíš ji na webu v Peněženkách.",
+    "archiv": "{n, plural, one {# archivovaná} few {# archivované} many {# archivované} other {# archivovaných}}",
+    "upravyNaWebu": "Peněženky zatím zakládáš a upravuješ na webu. Přesun mezi nimi uděláš i tady.",
+    "nenalezena": "Peněženka nenalezena.",
+    "archivovana": "archivovaná",
+    "zustatekKeDni": "Zůstatek zadaný ke dni {datum}",
+    "dalsi": "Načíst další"
+  },
+  "presun": {
+    "titulek": "Přesun mezi peněženkami",
+    "nazevOdchozi": "Převod → {nazev}",
+    "nazevPrichozi": "Převod ← {nazev}",
+    "vychoziPoznamka": "Převod mezi peněženkami",
+    "koncept": "Máš rozepsaný přesun ({cas}).",
+    "z": "Z peněženky",
+    "do": "Do peněženky",
+    "chybaStejne": "Vyber dvě různé peněženky.",
+    "chybaPenezenky": "Vyber obě peněženky.",
+    "castkaVMene": "Částka ({mena})",
+    "castkaCil": "Připíše se ({mena})",
+    "ruzneMenyPopis": "Peněženky mají různou měnu – zadej, kolik se skutečně připsalo (podle kurzu banky).",
+    "chybaCastkaCil": "Zadej připsanou částku.",
+    "vysvetleni": "Přesun není příjem ani výdaj – změní jen zůstatky obou peněženek.",
+    "provest": "Přesunout",
+    "nenalezen": "Přesun nenalezen.",
+    "detail": "Přesun",
+    "jenJednaStrana": "Druhá strana přesunu chybí (smazaná na webu).",
+    "upravaNaWebu": "Přesun tady můžeš smazat. Upravit ho zatím jde na webu.",
+    "zavrit": "Zavřít",
+    "smazat": "Smazat přesun",
+    "smazan": "Přesun smazán"
+  },
+  "pujcky": {
+    "bezNazvu": "Půjčka",
+    "splaceno": "Splaceno",
+    "typ": {
+      "personal": "Spotřebitelský úvěr",
+      "mortgage": "Hypotéka",
+      "nonbank": "Nebankovní půjčka",
+      "credit": "Kreditní karta",
+      "ico": "Půjčka na IČO",
+      "friend": "Od známého"
+    },
+    "urok": "{urok} % p. a.",
+    "poSplatnosti": "{n, plural, one {# splátka je po splatnosti} few {# splátky jsou po splatnosti} many {# splátky je po splatnosti} other {# splátek je po splatnosti}}",
+    "splacenoZ": "Splaceno {pct} z",
+    "zbyva": "Zbývá",
+    "frekvence": {
+      "monthly": "Splátka měsíčně",
+      "weekly": "Splátka týdně",
+      "biweekly": "Splátka po 2 týdnech"
+    },
+    "pristi": "Příští splátka",
+    "zbyvaSplatek": "Zbývá splátek",
+    "zaplacenoVAppce": "{n, plural, one {Zaplaceno v appce (# splátka):} few {Zaplaceno v appce (# splátky):} many {Zaplaceno v appce (# splátky):} other {Zaplaceno v appce (# splátek):}}",
+    "zadne": "Žádné půjčky. 🎉",
+    "zbyvaCelkem": "Zbývá celkem",
+    "mesicneCelkem": "Splátky za měsíc",
+    "splacene": "Splacené",
+    "upravyNaWebu": "Půjčky a splátkové kalendáře zatím upravuješ na webu."
   }
 }

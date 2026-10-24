@@ -6,3 +6,5 @@ export * from './uctenky/parovani';
 export { bezDiakritiky } from './text/normalizace';
 export * from './data/typy';
 export * from './data/vypocty';
+export * from './data/presuny';
+export * from './data/dluhy';

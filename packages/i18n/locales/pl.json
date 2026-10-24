@@ -3,14 +3,15 @@
     "nazev": "FinanceFlow",
     "nav": {
       "zBanky": "Z banku",
-      "nastaveni": "Ustawienia",
       "prehled": "Przegląd",
-      "transakce": "Transakcje"
+      "transakce": "Transakcje",
+      "vice": "Więcej"
     },
     "nacitam": "Wczytywanie…",
     "pridat": "Dodaj transakcję",
     "offline": "Brak połączenia",
-    "cekajici": "{n, plural, one {# zmiana czeka na wysłanie} few {# zmiany czekają na wysłanie} many {# zmian czeka na wysłanie} other {# zmiany czeka na wysłanie}}"
+    "cekajici": "{n, plural, one {# zmiana czeka na wysłanie} few {# zmiany czekają na wysłanie} many {# zmian czeka na wysłanie} other {# zmiany czeka na wysłanie}}",
+    "zpet": "Wstecz"
   },
   "prihlaseni": {
     "titulek": "Logowanie",
@@ -96,7 +97,15 @@
     "dalsi": "Następny miesiąc"
   },
   "kategorie": {
-    "bez": "Bez kategorii"
+    "bez": "Bez kategorii",
+    "zadne": "Brak kategorii.",
+    "skupina": {
+      "vydaje": "Wydatki",
+      "prijmy": "Przychody",
+      "presuny": "Oszczędności i inwestycje (przelewy własne)"
+    },
+    "podkategorii": "{n, plural, one {# podkategoria} few {# podkategorie} many {# podkategorii} other {# podkategorii}}",
+    "upravyNaWebu": "Na razie kategorie edytujesz w przeglądarce."
   },
   "prehled": {
     "prijmy": "Przychody",
@@ -126,7 +135,9 @@
     "presun": "przelew własny",
     "vyrovnani": "wyrównanie",
     "rozdeleno": "podzielona",
-    "zNotifikace": "z powiadomienia"
+    "zNotifikace": "z powiadomienia",
+    "presunNazev": "Przelew własny",
+    "zrusitKategorii": "Wyczyść filtr kategorii"
   },
   "formular": {
     "novy": "Nowa transakcja",
@@ -155,5 +166,85 @@
     "zahodit": "Odrzuć",
     "zNotifikace": "Zapisano automatycznie z powiadomienia banku.",
     "chybaUlozeni": "Nie udało się zapisać. Niedokończona transakcja zostaje w telefonie – spróbuj ponownie."
+  },
+  "vice": {
+    "penezenky": "Portfele",
+    "penezenkyPopis": "Salda i przelewy między portfelami",
+    "kategorie": "Kategorie",
+    "kategoriePopis": "Ile trafia do każdej kategorii",
+    "pujcky": "Pożyczki",
+    "pujckyPopis": "Pozostało do spłaty, raty",
+    "nastaveni": "Ustawienia",
+    "nastaveniPopis": "Język, konto"
+  },
+  "penezenky": {
+    "typ": {
+      "cash": "Gotówka",
+      "account": "Konto osobiste",
+      "savings": "Oszczędnościowe",
+      "investment": "Inwestycje",
+      "card": "Karta kredytowa",
+      "other": "Inne"
+    },
+    "zadne": "Nie masz jeszcze portfela. Utworzysz go w przeglądarce w sekcji Portfele.",
+    "archiv": "{n, plural, one {# zarchiwizowany} few {# zarchiwizowane} many {# zarchiwizowanych} other {# zarchiwizowanego}}",
+    "upravyNaWebu": "Na razie portfele tworzysz i edytujesz w przeglądarce. Przelew między nimi zrobisz też tutaj.",
+    "nenalezena": "Nie znaleziono portfela.",
+    "archivovana": "zarchiwizowany",
+    "zustatekKeDni": "Saldo wprowadzone na dzień {datum}",
+    "dalsi": "Wczytaj więcej"
+  },
+  "presun": {
+    "titulek": "Przelew między portfelami",
+    "nazevOdchozi": "Przelew → {nazev}",
+    "nazevPrichozi": "Przelew ← {nazev}",
+    "vychoziPoznamka": "Przelew między portfelami",
+    "koncept": "Masz niedokończony przelew ({cas}).",
+    "z": "Z portfela",
+    "do": "Do portfela",
+    "chybaStejne": "Wybierz dwa różne portfele.",
+    "chybaPenezenky": "Wybierz oba portfele.",
+    "castkaVMene": "Kwota ({mena})",
+    "castkaCil": "Zostanie zaksięgowane ({mena})",
+    "ruzneMenyPopis": "Portfele mają różne waluty – wpisz kwotę faktycznie zaksięgowaną (wg kursu banku).",
+    "chybaCastkaCil": "Wpisz zaksięgowaną kwotę.",
+    "vysvetleni": "Przelew nie jest ani przychodem, ani wydatkiem – zmienia tylko salda obu portfeli.",
+    "provest": "Przelej",
+    "nenalezen": "Nie znaleziono przelewu.",
+    "detail": "Przelew",
+    "jenJednaStrana": "Brakuje drugiej strony przelewu (usunięta w przeglądarce).",
+    "upravaNaWebu": "Tutaj możesz usunąć przelew. Edycja jest na razie dostępna w przeglądarce.",
+    "zavrit": "Zamknij",
+    "smazat": "Usuń przelew",
+    "smazan": "Przelew usunięty"
+  },
+  "pujcky": {
+    "bezNazvu": "Pożyczka",
+    "splaceno": "Spłacona",
+    "typ": {
+      "personal": "Kredyt konsumpcyjny",
+      "mortgage": "Kredyt hipoteczny",
+      "nonbank": "Pożyczka pozabankowa",
+      "credit": "Karta kredytowa",
+      "ico": "Pożyczka dla firmy",
+      "friend": "Od znajomego"
+    },
+    "urok": "{urok}% rocznie",
+    "poSplatnosti": "{n, plural, one {# rata jest zaległa} few {# raty są zaległe} many {# rat jest zaległych} other {# raty jest zaległej}}",
+    "splacenoZ": "Spłacono {pct} z",
+    "zbyva": "Pozostało",
+    "frekvence": {
+      "monthly": "Rata miesięczna",
+      "weekly": "Rata tygodniowa",
+      "biweekly": "Rata co 2 tygodnie"
+    },
+    "pristi": "Następna rata",
+    "zbyvaSplatek": "Pozostało rat",
+    "zaplacenoVAppce": "{n, plural, one {Zapłacono w aplikacji (# rata):} few {Zapłacono w aplikacji (# raty):} many {Zapłacono w aplikacji (# rat):} other {Zapłacono w aplikacji (# raty):}}",
+    "zadne": "Brak pożyczek. 🎉",
+    "zbyvaCelkem": "Pozostało łącznie",
+    "mesicneCelkem": "Raty miesięcznie",
+    "splacene": "Spłacone",
+    "upravyNaWebu": "Na razie pożyczki i harmonogramy spłat edytujesz w przeglądarce."
   }
 }

@@ -32,6 +32,10 @@ export interface Tx {
   receiptAddedAt?: number;
   zdroj?: string;
   notifKlic?: string;
+  /** Splátka půjčky. */
+  debtId?: string;
+  /** Splátka z Opakované platby založená dopředu – ještě nezaplacená. */
+  debtCeka?: boolean;
   [pole: string]: unknown;
 }
 
@@ -60,10 +64,35 @@ export interface Penezenka {
   archived?: boolean;
 }
 
+export interface SplatkaPlanu {
+  date?: string;
+  payment?: number;
+  principal?: number;
+  interest?: number;
+  paid?: boolean;
+}
+
 export interface Dluh {
   id?: string;
   name?: string;
+  /** personal | mortgage | nonbank | credit | ico | friend */
+  type?: string;
+  creditor?: string;
+  /** Úrok % p.a. */
+  interest?: number;
+  total?: number;
   remaining?: number;
+  /** Splátka v jednom období (podle `freq`). */
+  payment?: number;
+  installment?: number;
+  /** monthly | weekly | biweekly */
+  freq?: string;
+  /** Proměnná splátka: od měsíce 'YYYY-MM' platí `amt`. */
+  installments?: { from?: string; amt?: number }[];
+  /** Budoucí splátky (web je generuje, zaplacené mají `paid`). */
+  schedule?: SplatkaPlanu[];
+  priority?: string;
+  startDate?: string;
 }
 
 export interface DataUzivatele {

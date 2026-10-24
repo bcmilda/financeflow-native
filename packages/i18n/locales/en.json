@@ -3,14 +3,15 @@
     "nazev": "FinanceFlow",
     "nav": {
       "zBanky": "From bank",
-      "nastaveni": "Settings",
       "prehled": "Overview",
-      "transakce": "Transactions"
+      "transakce": "Transactions",
+      "vice": "More"
     },
     "nacitam": "Loading…",
     "pridat": "Add transaction",
     "offline": "Offline",
-    "cekajici": "{n, plural, one {# change waiting to sync} other {# changes waiting to sync}}"
+    "cekajici": "{n, plural, one {# change waiting to sync} other {# changes waiting to sync}}",
+    "zpet": "Back"
   },
   "prihlaseni": {
     "titulek": "Sign in",
@@ -96,7 +97,15 @@
     "dalsi": "Next month"
   },
   "kategorie": {
-    "bez": "Uncategorised"
+    "bez": "Uncategorised",
+    "zadne": "No categories yet.",
+    "skupina": {
+      "vydaje": "Expenses",
+      "prijmy": "Income",
+      "presuny": "Savings and investments (transfers)"
+    },
+    "podkategorii": "{n, plural, one {# subcategory} other {# subcategories}}",
+    "upravyNaWebu": "For now, categories are edited on the web."
   },
   "prehled": {
     "prijmy": "Income",
@@ -126,7 +135,9 @@
     "presun": "transfer",
     "vyrovnani": "balancing",
     "rozdeleno": "split",
-    "zNotifikace": "from notification"
+    "zNotifikace": "from notification",
+    "presunNazev": "Transfer",
+    "zrusitKategorii": "Clear category filter"
   },
   "formular": {
     "novy": "New transaction",
@@ -155,5 +166,85 @@
     "zahodit": "Discard",
     "zNotifikace": "Recorded automatically from a bank notification.",
     "chybaUlozeni": "Saving failed. Your unfinished transaction is kept on the phone – please try again."
+  },
+  "vice": {
+    "penezenky": "Wallets",
+    "penezenkyPopis": "Balances and transfers between wallets",
+    "kategorie": "Categories",
+    "kategoriePopis": "How much goes into each category",
+    "pujcky": "Loans",
+    "pujckyPopis": "Remaining balance, repayments",
+    "nastaveni": "Settings",
+    "nastaveniPopis": "Language, account"
+  },
+  "penezenky": {
+    "typ": {
+      "cash": "Cash",
+      "account": "Current account",
+      "savings": "Savings",
+      "investment": "Investments",
+      "card": "Credit card",
+      "other": "Other"
+    },
+    "zadne": "You don't have any wallets yet. Create one on the web under Wallets.",
+    "archiv": "{n, plural, one {# archived} other {# archived}}",
+    "upravyNaWebu": "For now, create and edit wallets on the web. You can transfer between them here too.",
+    "nenalezena": "Wallet not found.",
+    "archivovana": "archived",
+    "zustatekKeDni": "Balance entered as of {datum}",
+    "dalsi": "Load more"
+  },
+  "presun": {
+    "titulek": "Transfer between wallets",
+    "nazevOdchozi": "Transfer → {nazev}",
+    "nazevPrichozi": "Transfer ← {nazev}",
+    "vychoziPoznamka": "Transfer between wallets",
+    "koncept": "You have an unfinished transfer ({cas}).",
+    "z": "From wallet",
+    "do": "To wallet",
+    "chybaStejne": "Choose two different wallets.",
+    "chybaPenezenky": "Choose both wallets.",
+    "castkaVMene": "Amount ({mena})",
+    "castkaCil": "Amount credited ({mena})",
+    "ruzneMenyPopis": "The wallets use different currencies – enter the amount actually credited (at your bank's rate).",
+    "chybaCastkaCil": "Enter the amount credited.",
+    "vysvetleni": "A transfer is neither income nor an expense – it only changes the balances of both wallets.",
+    "provest": "Transfer",
+    "nenalezen": "Transfer not found.",
+    "detail": "Transfer",
+    "jenJednaStrana": "The other side of the transfer is missing (deleted on the web).",
+    "upravaNaWebu": "You can delete the transfer here. Editing is available on the web for now.",
+    "zavrit": "Close",
+    "smazat": "Delete transfer",
+    "smazan": "Transfer deleted"
+  },
+  "pujcky": {
+    "bezNazvu": "Loan",
+    "splaceno": "Paid off",
+    "typ": {
+      "personal": "Consumer loan",
+      "mortgage": "Mortgage",
+      "nonbank": "Non-bank loan",
+      "credit": "Credit card",
+      "ico": "Business loan",
+      "friend": "From a friend"
+    },
+    "urok": "{urok}% APR",
+    "poSplatnosti": "{n, plural, one {# repayment is overdue} other {# repayments are overdue}}",
+    "splacenoZ": "{pct} paid off of",
+    "zbyva": "Remaining",
+    "frekvence": {
+      "monthly": "Monthly payment",
+      "weekly": "Weekly payment",
+      "biweekly": "Payment every 2 weeks"
+    },
+    "pristi": "Next payment",
+    "zbyvaSplatek": "Payments left",
+    "zaplacenoVAppce": "{n, plural, one {Paid in the app (# payment):} other {Paid in the app (# payments):}}",
+    "zadne": "No loans. 🎉",
+    "zbyvaCelkem": "Total remaining",
+    "mesicneCelkem": "Payments per month",
+    "splacene": "Paid off",
+    "upravyNaWebu": "For now, loans and repayment schedules are edited on the web."
   }
 }
