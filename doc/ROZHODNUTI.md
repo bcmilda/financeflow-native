@@ -62,10 +62,17 @@
 
 **N-112 · Navigace:** spodní menu Přehled · Transakce · Z banky · Více. „Více“ je rozcestník dalších obrazovek klonu (Peněženky, Kategorie, Půjčky, Nastavení). Tlačítko ‹ v hlavičce a systémové Zpět vedou o úroveň výš.
 
+## 26. 10. 2026 · poznatky z provozu webu (FinanceFlow Inbox, web v12.06)
+
+**N-113 · Doplnění téže platby.** KB+ pošle oznámení o platbě krátce („Platba 1 168 Kč u obchodníka Alza.cz“) a hned plně (i s kartou). Telefon zachytí obě. Nativní appka zapíše jednu transakci a z plnějšího oznámení jen doplní prázdná místa (obchodník, karta, peněženka karty místo automatické peněženky banky). Co uživatel mezitím přepsal (název, peněženka), zůstává.
+- Pravidlo: stejná banka, typ a částka do 10 minut a jedno z oznámení má méně údajů. Dvě úplná stejná oznámení jsou dvě platby (dvě kávy). Vyladění proti webu: web bere jako duplikát vše se stejnou částkou do 10 minut.
+- Transakce z oznámení má navíc pole `notifCas` a `notifObchodnik`.
+
 ## Otevřené
 
 - Zápis na pozadí, když appka neběží. Dnes se oznámení uloží do fronty v telefonu vždy, transakce se zapíše při nejbližším otevření appky (nebo hned, když běží).
 - iPhone: Zkratky + Apple Pay.
-- Ověřit balíčky aplikací Air Bank, Raiffeisenbank, UniCredit a mBank (průzkum v appce).
+- Ověřit balíčky aplikací Air Bank, Raiffeisenbank, UniCredit a mBank (průzkum v appce). U KB+ ověřit `cz.kb.ndb` na skutečném telefonu (web v testu používá `cz.kb.mobilnibanka`, ale to je odhad).
+- Převod na vlastní účet (web v12.06: „Platba 399 Kč z účtu A na účet B“) se dnes zapíše jako výdaj. Web umožní označit ho jako přesun do vlastní peněženky – v nativní appce zatím ne.
 - Doskenování účtenky k platbě z oznámení (`doc/UCTENKY.md`). Kategorie po připojení: z položek účtenky (N-008).
 - Další obrazovky webu: přesuny mezi peněženkami, rozpočty, dluhy, účtenky, výplatnice, měřidla, vozidla…

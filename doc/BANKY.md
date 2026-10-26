@@ -4,7 +4,7 @@
 
 | Banka | Aplikace (balíček) | Balíček ověřen | Pravidla ověřena na skutečných oznámeních |
 |---|---|---|---|
-| Komerční banka | KB+ (`cz.kb.ndb`) | ✅ | ✅ platba kartou, odchozí platba, budoucí splátka (17. 10. 2026) |
+| Komerční banka | KB+ (`cz.kb.ndb`) | ✅ (AppGoblin; na telefonu neověřeno) | ✅ platba kartou (krátká i plná), odchozí platba, převod z účtu na účet, budoucí splátka (17. a 22. 10. 2026) |
 | Česká spořitelna | George (`cz.csas.georgego`) | ✅ | ❌ |
 | ČSOB | ČSOB Smart (`cz.csob.smart`) | ✅ | ❌ |
 | MONETA | Smart Banka (`cz.moneta.smartbanka`) | ✅ | ❌ |

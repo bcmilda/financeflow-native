@@ -27,6 +27,10 @@ export const TransakceWeb = z.object({
   /** Otisk notifikace – tatáž notifikace nikdy nevytvoří druhou transakci. */
   notifKlic: z.string(),
   notifBanka: z.string(),
+  /** Čas doručení oznámení (ms) – podle něj se pozná doplnění téže platby. */
+  notifCas: z.number().int(),
+  /** Obchodník / protistrana přesně z oznámení (název transakce může uživatel přepsat). */
+  notifObchodnik: z.string().max(299).optional(),
   karta4: z.string().regex(/^\d{4}$/).optional(),
 });
 
@@ -42,6 +46,11 @@ export interface TransakceLehka {
   date?: string;
   zdroj?: string;
   notifKlic?: string;
+  notifBanka?: string;
+  notifCas?: number;
+  notifObchodnik?: string;
+  karta4?: string;
+  wallet?: string;
   receiptItems?: unknown[];
   receiptAddedAt?: number;
   splitParent?: unknown;

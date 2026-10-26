@@ -4,7 +4,7 @@ import {
   browserLocalPersistence, browserPopupRedirectResolver, GoogleAuthProvider, indexedDBLocalPersistence, initializeAuth,
   onAuthStateChanged, sendPasswordResetEmail, signInWithCredential, signInWithEmailAndPassword, signInWithPopup, signOut, type User,
 } from 'firebase/auth';
-import { get, getDatabase, limitToLast, orderByKey, query, ref, set } from 'firebase/database';
+import { get, getDatabase, limitToLast, orderByKey, query, ref, set, update } from 'firebase/database';
 import type { TransakceLehka, TransakceWeb } from '@ff/core';
 import { GOOGLE_WEB_CLIENT_ID } from './konfigurace';
 
@@ -107,4 +107,9 @@ export async function nactiPosledniTransakce(uid: string, pocet = 300): Promise<
  */
 export async function zapisTransakci(uid: string, tx: TransakceWeb): Promise<void> {
   await set(ref(db, cesta(uid, `transactions/${tx.id}`)), tx);
+}
+
+/** Doplnění polí transakce (jen zadaná pole, zbytek zůstane). */
+export async function upravTransakci(uid: string, id: number | string, zmeny: Record<string, unknown>): Promise<void> {
+  await update(ref(db, cesta(uid, `transactions/${id}`)), zmeny);
 }

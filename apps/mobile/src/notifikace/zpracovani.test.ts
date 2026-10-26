@@ -5,11 +5,13 @@ import { zpracujPolozky, type KontextZpracovani } from './zpracovani';
 const cas = Date.parse('2026-10-16T18:30:00+02:00');
 const karta = (id: string, text: string, posun = 0) => ({ id, balicek: 'cz.kb.ndb', titulek: 'Platba kartou', text, cas: cas + posun });
 
+const upravy: { id: number | string; z: Record<string, unknown> }[] = [];
 function kontext(o: Partial<KontextZpracovani> = {}): KontextZpracovani & { zapsane: TransakceWeb[] } {
   const zapsane: TransakceWeb[] = [];
+  upravy.length = 0;
   return {
     vlastniBalicky: {}, penezenky: { kb: 'w-kb', 'kb:9999': 'w-kredit' },
-    transakce: [], zapis: async tx => { zapsane.push(tx); }, casovaZona: 'Europe/Prague', ted: 1, zapsane, ...o,
+    transakce: [], zapis: async tx => { zapsane.push(tx); }, uprav: async (id, z) => { upravy.push({ id, z }); }, casovaZona: 'Europe/Prague', ted: 1, zapsane, ...o,
   };
 }
 
@@ -72,5 +74,71 @@ describe('fronta notifikací → transakce', () => {
     const r = await zpracujPolozky([karta('a', '12,50 EUR  u obchodníka Billa Wien, 💳 VISA 4111 11** **** 1234.')], k);
     expect(k.zapsane).toHaveLength(0);
     expect(r.historie[0]?.stav).toBe('jinaMena');
+  });
+});
+
+/**
+ * Skutečné chování KB+ (web v12.06, Milan 22. 10. 2026): jedna platba přišla dvakrát –
+ * nejdřív krátké oznámení bez karty, za chvíli plné s kartou.
+ */
+describe('KB+ krátké a plné oznámení téže platby', () => {
+  const T = Date.parse('2026-10-22T12:16:00+02:00');
+  const kratke = { id: 'k', balicek: 'cz.kb.ndb', titulek: 'Platba kartou', text: 'Platba 1 168 Kč u obchodníka Alza.cz', cas: T };
+  const plne = { id: 'p', balicek: 'cz.kb.ndb', titulek: 'Platba kartou', text: 'Platba 1 168 Kč u obchodníka Alza.cz, 💳 VISA Classic 4111 11** **** 9999.', cas: T + 20_000 };
+
+  it('obě v jedné dávce → jedna transakce, karta a peněženka karty se doplní', async () => {
+    const k = kontext();
+    const r = await zpracujPolozky([plne, kratke], k);
+    expect(k.zapsane).toHaveLength(1);
+    expect(k.zapsane[0]).toMatchObject({ name: 'Alza.cz', amount: 1168, notifObchodnik: 'Alza.cz' });
+    // karta 9999 má vlastní peněženku (kreditka) → nahradí automatickou peněženku banky
+    expect(upravy).toEqual([{ id: k.zapsane[0]!.id, z: { karta4: '9999', wallet: 'w-kredit' } }]);
+    expect(r.potvrdit.sort()).toEqual(['k', 'p']);
+  });
+
+  it('plné přijde až v další dávce (transakce už je ve Firebase) → jen doplnění', async () => {
+    const k1 = kontext();
+    await zpracujPolozky([kratke], k1);
+    const ulozena = { ...k1.zapsane[0]! };
+    const k2 = kontext({ transakce: [ulozena] });
+    await zpracujPolozky([plne], k2);
+    expect(k2.zapsane).toHaveLength(0);
+    expect(upravy[0]?.z).toEqual({ karta4: '9999', wallet: 'w-kredit' });
+  });
+
+  it('peněženku, kterou uživatel sám změnil, doplnění nepřepíše', async () => {
+    const k1 = kontext();
+    await zpracujPolozky([kratke], k1);
+    await zpracujPolozky([plne], kontext({ transakce: [{ ...k1.zapsane[0]!, wallet: 'w-hotovost' }] }));
+    expect(upravy[0]?.z).toEqual({ karta4: '9999' });
+  });
+
+  it('krátké bez obchodníka → název z plného, ale jen když ho uživatel nepřepsal', async () => {
+    const bezObch = { ...kratke, text: '1 168,00 Kč kartou' };
+    const k1 = kontext();
+    await zpracujPolozky([bezObch], k1);
+    expect(k1.zapsane[0]?.name).toBe('Platba kartou');
+    await zpracujPolozky([plne], kontext({ transakce: [{ ...k1.zapsane[0]! }] }));
+    expect(upravy[0]?.z).toMatchObject({ name: 'Alza.cz', notifObchodnik: 'Alza.cz', karta4: '9999' });
+    await zpracujPolozky([plne], kontext({ transakce: [{ ...k1.zapsane[0]!, name: 'Dárek pro mámu' }] }));
+    expect(upravy[0]?.z).not.toHaveProperty('name');
+  });
+
+  it('dvě úplná stejná oznámení do 10 minut = dvě platby (dvě kávy), ne doplnění', async () => {
+    const k = kontext();
+    await zpracujPolozky([plne, { ...plne, id: 'p2', cas: plne.cas + 120_000 }], k);
+    expect(k.zapsane).toHaveLength(2);
+  });
+
+  it('stejná částka po víc než 10 minutách = nová platba', async () => {
+    const k = kontext();
+    await zpracujPolozky([kratke, { ...plne, cas: T + 11 * 60_000 }], k);
+    expect(k.zapsane).toHaveLength(2);
+  });
+
+  it('jiný obchodník = jiná platba', async () => {
+    const k = kontext();
+    await zpracujPolozky([kratke, { ...plne, text: 'Platba 1 168 Kč u obchodníka Datart, 💳 VISA 4111 11** **** 9999.' }], k);
+    expect(k.zapsane).toHaveLength(2);
   });
 });

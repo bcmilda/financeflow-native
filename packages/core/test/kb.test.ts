@@ -74,6 +74,28 @@ describe('KB+ – skutečné notifikace', () => {
   });
 });
 
+/**
+ * Další tvary KB+ zachycené webem (FinanceFlow Inbox, web v12.06, 22. 10. 2026). Anonymizováno.
+ */
+describe('KB+ – tvary z provozu webu', () => {
+  it('krátké oznámení „Platba … u obchodníka …“ bez karty', () => {
+    const r = parseNotifikace(n('Platba kartou', 'Platba 1 168 Kč u obchodníka Alza.cz'));
+    expect(r.stav === 'platba' && r.platba).toEqual({ typ: 'expense', castka: 1168, mena: 'CZK', protistrana: 'Alza.cz', druh: 'karta' });
+  });
+  it('plné oznámení „Platba … u obchodníka …, 💳 …“', () => {
+    const r = parseNotifikace(n('Platba kartou', 'Platba 1 168 Kč u obchodníka Alza.cz, 💳 VISA Classic 4111 11** **** 1234.'));
+    expect(r.stav === 'platba' && r.platba).toMatchObject({ castka: 1168, protistrana: 'Alza.cz', karta4: '1234' });
+  });
+  it('odchozí převod z účtu na účet: výdaj, čísla účtů se nestanou názvem', () => {
+    const r = parseNotifikace(n('Odchozí platba', 'Platba 399 Kč z účtu 123-4567890123/0100 na účet 98-7654321098/0100.'));
+    expect(r.stav === 'platba' && r.platba).toMatchObject({ typ: 'expense', castka: 399, druh: 'prevod', protistrana: '' });
+  });
+  it('obchod s velkými písmeny', () => {
+    const r = parseNotifikace(n('Platba kartou', 'Platba 64 Kč u obchodníka POTRAVINY U NÁS'));
+    expect(r.stav === 'platba' && r.platba.protistrana).toBe('POTRAVINY U NÁS');
+  });
+});
+
 describe('neznámá aplikace', () => {
   it('notifikace z aplikace, která není banka, se nečte', () => {
     expect(parseNotifikace({ balicek: 'com.whatsapp', titulek: 'Platba kartou', text: '100 Kč u obchodníka X', cas }).stav).toBe('nerozpoznano');

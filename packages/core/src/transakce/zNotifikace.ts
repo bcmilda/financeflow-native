@@ -65,6 +65,8 @@ export function vytvorTransakci(
     zdroj: 'notifikace' as const,
     notifKlic: notifKlic(v),
     notifBanka: banka.id,
+    notifCas: v.cas,
+    ...(p.protistrana ? { notifObchodnik: p.protistrana.slice(0, 299) } : {}),
     ...(p.karta4 ? { karta4: p.karta4 } : {}),
   };
   return TransakceWeb.parse(tx);

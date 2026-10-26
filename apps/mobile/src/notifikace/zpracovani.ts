@@ -1,5 +1,5 @@
 import {
-  najdiDuplicitu, parseNotifikace, vytvorTransakci,
+  najdiDoplneni, najdiDuplicitu, parseNotifikace, vycistiText, vytvorTransakci, zmenyZDoplneni,
   type TransakceLehka, type TransakceWeb,
 } from '@ff/core';
 import type { Nerozpoznana, PolozkaHistorie } from '../uloziste';
@@ -11,6 +11,8 @@ export interface KontextZpracovani {
   /** Poslední transakce z Firebase – kvůli duplicitám. Funkce do pole přidává zapsané. */
   transakce: TransakceLehka[];
   zapis: (tx: TransakceWeb) => Promise<void>;
+  /** Úprava polí už zapsané transakce (doplnění téže platby). */
+  uprav: (id: number | string, zmeny: Record<string, unknown>) => Promise<void>;
   casovaZona?: string;
   ted?: number;
 }
@@ -22,6 +24,8 @@ export interface VysledekZpracovani {
   potvrdit: string[];
   /** Kolik zápisů selhalo (zůstávají ve frontě, zkusí se příště). */
   chyby: number;
+  /** Doplnění už zapsaných plateb (banka poslala plnější oznámení) – pro historii v telefonu. */
+  doplneno: { klic: string; nazev?: string; karta4?: string }[];
 }
 
 /**
@@ -29,6 +33,7 @@ export interface VysledekZpracovani {
  *
  * - platba v CZK bez dvojčete → zapíše se rovnou do transakcí (bez kategorie, N-008)
  * - stejná notifikace podruhé → nic (už zapsaná)
+ * - banka platbu oznámí krátce a hned plně (KB+) → jedna transakce, plnější údaje se doplní
  * - stejná platba zapsaná jinak (ručně, výpis) → nezapíše se, appka nabídne „Přesto přidat“
  * - cizí měna → nezapíše se (bez kurzu by částka nebyla správně), appka ji ukáže
  * - není to provedená platba (budoucí splátka, ověření…) → zahodí se
@@ -38,7 +43,7 @@ export interface VysledekZpracovani {
  * Zápis je bezpečné opakovat: id transakce je odvozené z notifikace.
  */
 export async function zpracujPolozky(polozky: ZachycenaNotifikace[], k: KontextZpracovani): Promise<VysledekZpracovani> {
-  const out: VysledekZpracovani = { historie: [], nerozpoznane: [], potvrdit: [], chyby: 0 };
+  const out: VysledekZpracovani = { historie: [], nerozpoznane: [], potvrdit: [], chyby: 0, doplneno: [] };
 
   for (const p of [...polozky].sort((a, b) => a.cas - b.cas)) {
     const r = parseNotifikace({ balicek: p.balicek, titulek: p.titulek, text: p.text, cas: p.cas }, k.vlastniBalicky);
@@ -76,6 +81,23 @@ export async function zpracujPolozky(polozky: ZachycenaNotifikace[], k: KontextZ
     if (tx.currency !== 'CZK') {
       out.historie.push({ ...zaklad, stav: 'jinaMena' });
       out.potvrdit.push(p.id);
+      continue;
+    }
+
+    // Doplnění téže platby (krátké + plné oznámení) – žádná nová transakce.
+    const puvodni = najdiDoplneni(tx, k.transakce);
+    if (puvodni) {
+      const zmeny = zmenyZDoplneni(puvodni, tx, vycistiText(p.titulek) || banka.nazev, k.penezenky[banka.id]);
+      try {
+        if (Object.keys(zmeny).length) {
+          await k.uprav(puvodni.id, zmeny);
+          Object.assign(puvodni, zmeny);
+          if (puvodni.notifKlic) out.doplneno.push({ klic: puvodni.notifKlic, ...(typeof zmeny.name === 'string' ? { nazev: zmeny.name } : {}), ...(tx.karta4 ? { karta4: tx.karta4 } : {}) });
+        }
+        out.potvrdit.push(p.id);
+      } catch {
+        out.chyby++;
+      }
       continue;
     }
 

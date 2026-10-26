@@ -24,3 +24,11 @@ Repo ještě není na GitHubu, takže blok A plánu (appka na telefonu) počká.
 
 ## Neověřeno (beze změny od N1)
 Android build, telefon, Google přihlášení v telefonu, zápis do skutečné databáze – vše čeká na repo (`doc/PLAN-SESSION-N3.md`, blok A).
+
+## Pokračování 26. 10. 2026 · n0.3.1
+
+- Web pushnutý do `dev` až po **v12.12** (produkce v12.10). Kontraktní test proti v12.12 prochází – od v12.04 se převzaté výpočty nezměnily (přibyly jen jednotky položek účtenek).
+- `main` webu je opuštěná (poslední změna 27. 3. 2026, bez kódu appky). ⚠️ Push do `main` spustí nasazení na financeflow.cz (`firebase-hosting-merge.yml`).
+- **Z provozu webu (Inbox, v12.06):** KB+ jednu platbu oznámí dvakrát (krátce a plně). Nativní appka by ji zapsala dvakrát → opraveno (N-113), 7 nových testů vč. negativní kontroly. Nové tvary textů KB+ v testech parseru.
+- Při psaní testů nalezena a opravena chyba: plné oznámení doplnilo kartu, ale nechalo peněženku banky místo peněženky karty.
+- Repo `bcmilda/financeflow-native` založené, ale **push odmítnut** – Claude GitHub App nemá k repu přístup pro zápis.

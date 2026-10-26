@@ -1,5 +1,5 @@
 import { REGIONY } from '@ff/i18n';
-import { nactiPosledniTransakce, zapisTransakci } from '../firebase';
+import { nactiPosledniTransakce, upravTransakci, zapisTransakci } from '../firebase';
 import {
   nactiHistorii, nactiNastaveni, nactiNerozpoznane, ulozHistorii, ulozNerozpoznane, type PolozkaHistorie,
 } from '../uloziste';
@@ -30,9 +30,16 @@ export function zpracujFrontu(uid: string): Promise<number> {
         penezenky: nastaveni.penezenky,
         transakce,
         zapis: tx => zapisTransakci(uid, tx),
+        uprav: (id, zmeny) => upravTransakci(uid, id, zmeny),
         casovaZona: Intl.DateTimeFormat().resolvedOptions().timeZone || REGIONY[0].casovaZona,
       });
-      if (r.historie.length) await ulozHistorii([...r.historie, ...(await nactiHistorii())]);
+      if (r.historie.length || r.doplneno.length) {
+        const h = [...r.historie, ...(await nactiHistorii())].map(x => {
+          const d = r.doplneno.find(y => y.klic === x.klic);
+          return d ? { ...x, ...(d.nazev ? { nazev: d.nazev } : {}), ...(d.karta4 ? { karta4: d.karta4 } : {}) } : x;
+        });
+        await ulozHistorii(h);
+      }
       if (r.nerozpoznane.length) await ulozNerozpoznane([...r.nerozpoznane, ...(await nactiNerozpoznane())]);
       if (r.potvrdit.length) await BankovniNotifikace.potvrdit({ ids: r.potvrdit });
       return r.historie.filter(h => h.stav === 'zapsano').length;
