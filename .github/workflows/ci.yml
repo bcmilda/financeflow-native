@@ -29,19 +29,23 @@ jobs:
       - run: npm test
         env:
           WEB_REPO: ${{ github.workspace }}/web
+          # Bez webu kontraktní test selže (nesmí se tiše přeskočit).
+          KONTRAKT_POVINNY: '1'
       - run: npm run build
 
   android:
     name: Android APK
     needs: kontrola
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 21
@@ -60,3 +64,16 @@ jobs:
           name: financeflow-nativni-debug-apk
           path: apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
+      # APK ke stažení přímo do telefonu (bez přihlášení a bez zipu):
+      # github.com/bcmilda/financeflow-native/releases/tag/prubezne
+      - name: Zveřejnit APK (průběžná verze)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk financeflow-nativni.apk
+          VERZE=$(node -p "require('./apps/mobile/package.json').version")
+          POPIS="Průběžná ladicí verze n${VERZE} (commit ${GITHUB_SHA::7}). Instalace: stáhnout financeflow-nativni.apk v telefonu a otevřít (povolit instalaci z prohlížeče)."
+          gh release view prubezne >/dev/null 2>&1 || gh release create prubezne --prerelease --title "Průběžná verze (ladicí)" --notes "$POPIS"
+          gh release edit prubezne --title "Průběžná verze n${VERZE} (ladicí)" --notes "$POPIS"
+          gh release upload prubezne financeflow-nativni.apk --clobber

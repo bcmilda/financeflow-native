@@ -44,3 +44,12 @@ Shrnutí v `doc/SESSION-N2.md`, další kroky v `doc/PLAN-SESSION-N3.md`. Repo s
 - **Web se mezi sessions mění** (N1 v11.77 → N2 v12.04). Na začátku session: `git fetch` webu, `git diff` výpočtových souborů, `npm run vse` (kontraktní test).
 - **Náhled bez Firebase:** testovací data a konfigurace Vite v scratchpadu (`nahled.tsx`, `vite.nahled.config.ts`, podvržený `firebase.ts`) – do appky kopírovat jen na dobu proklikání a před commitem smazat.
 
+---
+
+## Repo a CI (od 26. 10. 2026)
+
+- Repo `bcmilda/financeflow-native`, větev `main`. Push ze session funguje (Claude GitHub App má přístup).
+- Každý push do `main`: kontroly + testy (kontraktní test s webem povinný) + Android build. APK v Releases `prubezne`: https://github.com/bcmilda/financeflow-native/releases/tag/prubezne
+- Logy a artefakty GitHub Actions odsud stáhnout nejde (proxy) – stav kroků přes `gh api repos/bcmilda/financeflow-native/actions/jobs/<id>`.
+- Zip archivy (`financeflow-native-n0.x.zip`) už nejsou potřeba.
+

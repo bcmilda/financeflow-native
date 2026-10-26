@@ -18,6 +18,7 @@ import dluhyUkazka from './fixtures/dluhy-ukazka.json';
  */
 const WEB = process.env.WEB_REPO ?? join(__dirname, '../../../../bcmilda/financeflow');
 const maWeb = existsSync(join(WEB, 'js/helpers.js'));
+if (!maWeb && process.env.KONTRAKT_POVINNY) throw new Error(`Kontraktní test: web nenalezen v ${WEB} (KONTRAKT_POVINNY)`);
 
 /** Vyřízne deklaraci funkce/konstanty ze zdrojáku podle párování složených závorek. */
 function vyrizni(zdroj: string, jmeno: string): string {

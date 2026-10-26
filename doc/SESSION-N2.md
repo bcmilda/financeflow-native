@@ -32,3 +32,6 @@ Android build, telefon, Google přihlášení v telefonu, zápis do skutečné d
 - **Z provozu webu (Inbox, v12.06):** KB+ jednu platbu oznámí dvakrát (krátce a plně). Nativní appka by ji zapsala dvakrát → opraveno (N-113), 7 nových testů vč. negativní kontroly. Nové tvary textů KB+ v testech parseru.
 - Při psaní testů nalezena a opravena chyba: plné oznámení doplnilo kartu, ale nechalo peněženku banky místo peněženky karty.
 - Repo `bcmilda/financeflow-native` založené, ale **push odmítnut** – Claude GitHub App nemá k repu přístup pro zápis.
+- Přístup povolen, projekt nahraný do `bcmilda/financeflow-native` (`main`). **První CI běh prošel celý napoprvé** – kontroly, testy i **Android build** (APK 6,9 MB). Java kód tím poprvé prošel skutečným buildem.
+- CI: APK se zveřejňuje v Releases (`prubezne`) ke stažení přímo do telefonu; kontraktní test v CI je povinný (`KONTRAKT_POVINNY`), nesmí se tiše přeskočit; `setup-java@v5`.
+

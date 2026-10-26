@@ -31,7 +31,7 @@ npm run vse        # kontrola překladů + text natvrdo + typy + testy + build (
 npm run dev        # appka v prohlížeči na http://localhost:5173
 ```
 
-APK pro Android sestaví GitHub Actions při každém push: záložka **Actions → poslední běh → Artifacts → financeflow-nativni-debug-apk**.
+APK pro Android sestaví GitHub Actions při každém push do `main`. Stažení do telefonu (bez přihlášení): **[Releases → Průběžná verze → financeflow-nativni.apk](https://github.com/bcmilda/financeflow-native/releases/tag/prubezne)**. Instalace: otevřít stažený soubor a povolit instalaci z prohlížeče. Je to ladicí verze, podepsaná klíčem z repa.
 
 ## Dokumentace
 

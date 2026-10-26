@@ -37,7 +37,7 @@ Proč v tomhle pořadí: všechno postavené v N1 je ověřené jen v prohlíže
 
 ## Blok A · Appka na telefonu (priorita 1)
 
-**A1 · První Android build v CI.** Spustit workflow, opravit případné chyby Javy/Gradle (kód nikdy neprošel skutečným buildem). Stáhnout APK z Actions → Artifacts.
+**A1 · První Android build v CI.** ✅ Hotovo 26. 10. 2026 (první běh prošel). Původně: Spustit workflow, opravit případné chyby Javy/Gradle (kód nikdy neprošel skutečným buildem). Stáhnout APK z Actions → Artifacts.
 *Hotovo, když:* CI je zelené a APK jde nainstalovat.
 
 **A2 · Google přihlášení.** Vložit Web client ID do `konfigurace.ts`, nový build.
